@@ -1,6 +1,10 @@
 # 📊 People Analytics: FinanCorp Chile
 ### Diagnóstico Predictivo de Rotación, Retención y Fuga de Talento
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=flat-square)
+
 ---
 
 ## 🎯 Visión General
@@ -289,44 +293,7 @@ graph TD
 
 ---
 
-## 📞 Contacto y Soporte
-
-**Análisis realizado:** 13 de mayo de 2026  
-**Versión:** 1.0  
-**Estado:** Production-Ready
-
----
-
-## 📚 Referencias y Metodología
-
-### Framework Utilizado
-- **Segmentación de Riesgo**: Score basado en factores de rotación
-- **Modelado Predictivo**: Clasificación binaria (scikit-learn)
-- **Validación**: Train-Test split 80-20, ROC-AUC como métrica
-
-### Bibliografía
-- Pfeffer, J. & Veiga, J.F. (1999). "Putting people first for organizational success"
-- Society for Human Resource Management (SHRM) - Turnover Cost Reports
-- Gallup Q12 - Employee Engagement Framework
-
----
-
-## 🏆 Calidad del Proyecto
-
-```
-✅ Reproducibilidad:      [████████░] 90%
-✅ Documentación:         [████████░] 88%
-✅ Validación Modelo:     [█████████] 95%
-✅ Impacto Potencial:     [██████████] 100%
-```
-
----
-
 <div align="center">
-
-### 🚀 **Listo para Implementación**
-
-*Este análisis proporciona una base sólida para transformar la estrategia de retención de talento en FinanCorp Chile.*
 
 **[⬆ Volver al inicio](#-people-analytics-financorp-chile)**
 
