@@ -11,7 +11,7 @@
 
 Este proyecto implementa un **modelo analítico avanzado** para identificar, explicar y anticipar la fuga de talento en organizaciones financieras. Mediante análisis exploratorio, modelado predictivo e insights estratégicos, proporciona una base data-driven para decisiones de retención de personal.
 
-**Caso de estudio:** FinanCorp Chile — Empresa ficticia de servicios financieros con 3,200 colaboradores.
+**Caso de estudio:** FinanCorp Chile — Empresa ficticia de servicios financieros con 3.200 colaboradores.
 
 ---
 
@@ -19,18 +19,19 @@ Este proyecto implementa un **modelo analítico avanzado** para identificar, exp
 
 | Métrica | Valor | Impacto |
 |---------|-------|--------|
-| **Rotación Actual** | 22% | 704 salidas anuales |
-| **Costo de Rotación** | USD 2.1M | USD 3,000 × persona |
-| **Rotación en Áreas Críticas** | 28% | 3.5x superior a otras áreas |
-| **Potencial de Ahorro (Año 1)** | USD 1.3M | Con intervenciones efectivas |
-| **Capacidad Predictiva del Modelo** | 82% (ROC-AUC) | Random Forest classifier |
+| **Rotación Actual** | 22.0% | 703 salidas anuales |
+| **Costo de Rotación** | USD $2.109M | USD $3.000 × persona |
+| **Rotación en Áreas Críticas** | 25.2% | **6.7×** superior a otras áreas (3.8%) |
+| **Potencial de Ahorro (Año 1)** | USD $1.671M | Con intervenciones efectivas |
+| **Capacidad Predictiva (RF)** | AUC 0.659 | Random Forest classifier |
+| **Capacidad Predictiva (RL)** | AUC 0.677 | Regresión Logística |
 
 ---
 
 ## 🔍 Contenido del Análisis
 
 ### 1️⃣ **Generación de Datos Sintéticos**
-- Dataset de 3,200 colaboradores con variables realistas
+- Dataset de 3.200 colaboradores con variables realistas
 - Distribución por área funcional y nivel de criticidad
 - Correlaciones controladas entre variables
 
@@ -55,95 +56,107 @@ Este proyecto implementa un **modelo analítico avanzado** para identificar, exp
 
 ### 5️⃣ **Segmentación y Riesgo**
 - Score de riesgo personalizado (0-100)
-- Clasificación en 4 niveles de riesgo (Bajo, Medio, Alto, Muy Alto)
-- Validación con rotación real
-- **Visualizado en** `analisis_riesgo.png`:
-  - Distribución del score (histograma)
-  - Violin plot: Score de rotados vs no-rotados
-  - Heatmap: Riesgo por área
-  - Scatter: Score vs rotación real
+- Clasificación en 4 niveles de riesgo:
+
+| Nivel | N | % | Rotación Real |
+|-------|---|---|---------------|
+| Bajo (0–25) | 724 | 22.6% | 16.9% |
+| Medio (25–50) | 1.385 | 43.3% | 21.1% |
+| Alto (50–75) | 966 | 30.2% | 27.1% |
+| Muy Alto (75+) | 79 | 2.5% | **30.4%** |
+
+- **Visualizado en** `analisis_riesgo.png`
 
 ### 6️⃣ **Modelos Predictivos de Machine Learning**
 ```
 ├── Regresión Logística
-│   ├── Precisión: 73%
-│   ├── ROC-AUC: 0.78
-│   └── Sensibilidad: 68.5%
+│   ├── Precisión: 78.1%
+│   └── ROC-AUC: 0.677
 │
-└── Random Forest (Modelo Final) ⭐
-    ├── Precisión: 76%
-    ├── ROC-AUC: 0.82 ← Mejor desempeño
-    ├── Sensibilidad: 71.3%
-    └── Features principales: Compromiso (28%), Ausentismo (22%), Desempeño (16%)
+└── Random Forest
+    ├── Precisión: 78.0%
+    ├── ROC-AUC: 0.659
+    ├── VN=499 / FP=0 / FN=141 / VP=0
+    └── Features principales (importancia):
+        ├── Antigüedad:      19.78%
+        ├── Clima:           15.48%
+        ├── Desempeño:       15.19%
+        ├── Ausentismo:      14.44%
+        ├── Compromiso:      14.39%
+        ├── Área Crítica:    12.14%
+        ├── Capacitación:     7.16%
+        └── Movilidad:        1.42%
 ```
-**Visualización en** `modelos_predictivos.png`:
-- Curva ROC comparativa
-- Feature importance ranking
-- Matriz de confusión
-- Distribución de probabilidades predichas
+**Visualización en** `modelos_predictivos.png`
 
 ### 7️⃣ **Matriz de Priorización**
-- Top 20 personas por riesgo de fuga (impacto × probabilidad)
+- Top personas por riesgo de fuga (impacto × probabilidad)
 - Análisis por área crítica
 - Recomendaciones de intervención por nivel
-**Visualizado en** `priorizacion.png`:
-- Matriz riesgo-impacto (scatter)
-- Distribución por nivel de riesgo
-- Impacto financiero estimado
-- Comparativa: Personas en riesgo vs rotación real por área
 
 ### 8️⃣ **Conclusiones Estratégicas**
 - Hallazgos principales
 - Recomendaciones inmediatas, preventivas y transformacionales
-- Proyección de impacto
+- Proyección de impacto financiero
 
 ---
 
 ## 🚀 Recomendaciones Estratégicas
 
 ### 🔴 Nivel 1: Intervención Urgente (2 semanas)
-- **Reuniones 1-a-1** con 234 personas en riesgo muy alto
-- **Diagnóstico rápido** en áreas críticas
-- **Planes personalizados** de retención
+- **Reuniones 1-a-1** con **79 personas** en riesgo muy alto (tasa real 30.4%)
+- **Diagnóstico rápido** de clima en áreas críticas
+- **Análisis de brecha salarial** vs. mercado
+- **Inversión:** USD $3.950 (79 horas)
 
 ### 🟠 Nivel 2: Prevención (1 mes)
-- Programa de mentoría en áreas críticas
-- Mejora de clima laboral
-- Oportunidades de desarrollo
+- **Mentoría estructurada** para **966 personas** en riesgo alto
+- Plan de capacitación: meta 3+ cursos/año
+- Talleres de liderazgo para jefaturas
+- **Inversión:** USD $205.000
 
 ### 🟡 Nivel 3: Transformación (6 meses)
 - Dashboard ejecutivo de rotación en tiempo real
-- Integración de People Analytics en decisiones
-- Ajuste de políticas de compensación y carrera
+- Integración de People Analytics en decisiones de HR
+- Revisión de políticas de carrera y compensación
+- **Inversión:** USD $45.000
 
 ---
 
 ## 📊 Variables Predictoras
 
-### Impacto en Rotación (por importancia)
+### Importancia en el Modelo Random Forest
 
 | Variable | Importancia | Dirección |
 |----------|-------------|-----------|
-| **Compromiso** | ⭐⭐⭐⭐⭐ | ↓ Reduce rotación |
-| **Ausentismo** | ⭐⭐⭐⭐ | ↑ Aumenta rotación |
-| **Capacitación** | ⭐⭐⭐⭐ | ↓ Reduce rotación |
-| **Movilidad Interna** | ⭐⭐⭐ | ↓ Reduce rotación |
-| **Desempeño** | ⭐⭐⭐ | ↓ Reduce rotación (paradójico) |
-| **Antigüedad** | ⭐⭐ | ↓ Reduce rotación |
+| **Antigüedad** | 19.78% | ↓ Reduce rotación |
+| **Clima Laboral** | 15.48% | ↓ Reduce rotación |
+| **Desempeño** | 15.19% | ↓ Reduce rotación |
+| **Ausentismo** | 14.44% | ↑ Aumenta rotación |
+| **Compromiso** | 14.39% | ↓ Reduce rotación |
+| **Área Crítica** | 12.14% | ↑ Aumenta rotación |
+| **Capacitación** | 7.16% | ↓ Reduce rotación |
+| **Movilidad Interna** | 1.42% | ↓ Reduce rotación |
+
+> **Correlación más fuerte:** Área Crítica (+0.185), Ausentismo (+0.153), Compromiso (-0.141)
 
 ---
 
 ## 💰 Proyección de Impacto (AÑO 1)
 
 ```
-META INICIAL:
-├── Reducir rotación total: 22% → 18.7% (-15%)
-│   └── Ahorro: USD $525,000
-│
-└── Reducir fuga en críticas: 28% → 22.4% (-20%)
-    └── Ahorro: USD $831,000
+LÍNEA BASE:
+├── Salidas anuales: 703
+└── Costo total:     USD $2.109.000
 
-TOTAL AÑO 1: USD $1,356,000 en ahorro directo
+ESCENARIO MODERADO (-15% rotación):
+└── Ahorro estimado: USD $316.350
+
+ESCENARIO OPTIMISTA (-20% rotación):
+└── Ahorro estimado: USD $411.000
+
+ROI POTENCIAL AÑO 1: USD $1.671.000
+(considerando reducción en áreas críticas + retención talento clave)
 ```
 
 ---
@@ -158,7 +171,6 @@ numpy               # Computación numérica
 # Visualización
 matplotlib          # Gráficos estáticos
 seaborn             # Visualizaciones avanzadas
-plotly              # Interactividad (futuro)
 
 # Machine Learning
 scikit-learn        # Modelos predictivos
@@ -177,56 +189,44 @@ warnings            # Gestión de alertas
 ### Python & Jupyter
 - **Python** ≥ 3.8
 - **Jupyter Notebook** o JupyterLab
-- Dependencias (ver `requirements.txt`)
 
-### LaTeX (para compilar documento PDF)
+### LaTeX (para compilar documentos PDF)
 - **TeX Live** (macOS/Linux)
   ```bash
   # macOS con Homebrew
   brew install texlive
-  
+
   # Linux (Debian/Ubuntu)
   sudo apt-get install texlive-full
   ```
-- **MiKTeX** (Windows)
-  ```bash
-  # Descargar desde: https://miktex.org/download
-  ```
+- **MiKTeX** (Windows): https://miktex.org/download
 
-### Instalación Rápida (Python + Análisis)
+### Instalación Rápida
 
 ```bash
 # 1. Crear entorno virtual
 python -m venv venv
-source venv/bin/activate  # macOS/Linux
-# o
-venv\Scripts\activate  # Windows
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
 
 # 2. Instalar dependencias
-pip install -r requirements.txt
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
 
 # 3. Ejecutar notebook
 jupyter notebook trabajo.ipynb
 ```
 
-### Compilación del Documento LaTeX
+### Compilación LaTeX
 
 ```bash
-# 1. Navegar al directorio del proyecto
 cd /ruta/al/People-Analytics
 
-# 2. Compilar a PDF (opción 1: XeLaTeX - recomendado)
-xelatex -interaction=nonstopmode analisis_people_analytics.tex
+# Informe técnico (23 páginas)
+pdflatex -interaction=nonstopmode analisis_people_analytics.tex
 
-# 3. O compilar con PDFLaTeX (opción 2)
-pdflatex analisis_people_analytics.tex
-
-# 4. Compilar dos veces para resolver referencias cruzadas
-xelatex -interaction=nonstopmode analisis_people_analytics.tex
-xelatex -interaction=nonstopmode analisis_people_analytics.tex
+# Presentación ejecutiva (19 láminas)
+pdflatex -interaction=nonstopmode presentacion_people_analytics.tex
 ```
-
-**Resultado:** Se genera `analisis_people_analytics.pdf` (23 páginas con gráficos integrados)
 
 ---
 
@@ -234,20 +234,22 @@ xelatex -interaction=nonstopmode analisis_people_analytics.tex
 
 ```
 People-Analytics/
-├── trabajo.ipynb                          # Notebook principal con análisis completo
-├── analisis_people_analytics.tex          # Documento LaTeX (profesional)
-├── analisis_people_analytics.pdf          # 📄 PDF compilado (23 páginas) ⭐
-├── README.md                              # Este archivo
-├── requirements.txt                       # Dependencias Python
+├── trabajo.ipynb                             # Notebook principal con análisis completo
+│
+├── 📄 Documentos LaTeX
+│   ├── analisis_people_analytics.tex         # Informe técnico (23 páginas)
+│   ├── analisis_people_analytics.pdf         # PDF compilado ⭐
+│   ├── presentacion_people_analytics.tex     # Presentación Beamer (19 láminas)
+│   ├── presentacion_people_analytics.pdf     # PDF compilado ⭐
+│   └── analisis_people_analytics_backup.tex  # Copia de seguridad
 │
 ├── 📊 Visualizaciones Generadas
-│   ├── analisis_diagnostico.png          # EDA: 6 gráficos de diagnóstico
-│   ├── analisis_riesgo.png               # Segmentación: Score y matriz de riesgo
-│   ├── modelos_predictivos.png           # ML: ROC, Features, Matriz confusión
-│   └── priorizacion.png                  # Priorización: Riesgo-Impacto y áreas
+│   ├── analisis_diagnostico.png              # EDA: 6 gráficos de diagnóstico
+│   ├── analisis_riesgo.png                   # Segmentación: Score y matriz de riesgo
+│   ├── modelos_predictivos.png               # ML: ROC, Features, Matriz confusión
+│   └── priorizacion.png                      # Priorización: Riesgo-Impacto y áreas
 │
-└── 📚 Respaldo
-    └── analisis_people_analytics_backup.tex  # Copia de seguridad
+└── README.md                                 # Este archivo
 ```
 
 ---
@@ -255,24 +257,24 @@ People-Analytics/
 ## 🎯 Casos de Uso
 
 ### 1. **Directivo de Personas**
-- Monitoreo de rotación en tiempo real
-- Identificación de áreas de riesgo
-- ROI de iniciativas de retención
+- Monitoreo de rotación y costos en tiempo real
+- Identificación de áreas de riesgo (Tecnología 35.6%, Atención Cli. 34.7%)
+- ROI de iniciativas de retención (hasta $1.671M Año 1)
 
 ### 2. **Jefatura de Área**
-- Conocer riesgo individual de sus colaboradores
+- Conocer el perfil de riesgo de su equipo
 - Planes personalizados de retención
-- Métricas de clima y desempeño
+- Métricas de clima, antigüedad y desempeño
 
 ### 3. **Data Science / BI**
-- Baseline de modelo predictivo
-- Validación de hipótesis
+- Baseline de modelo predictivo (AUC 0.659–0.677)
+- Validación de hipótesis con datos sintéticos realistas
 - Mejora continua del modelo
 
 ### 4. **C-Suite**
-- Impacto financiero de rotación
+- Impacto financiero de la rotación (USD $2.109M/año)
 - Decisiones estratégicas data-driven
-- Proyecciones de retención
+- Proyecciones de retención con 3 escenarios
 
 ---
 
@@ -283,121 +285,43 @@ graph TD
     A["📊 Datos Crudos"] -->|Limpieza| B["🔄 Preparación"]
     B -->|EDA| C["📈 Exploración"]
     C -->|Validación| D["🎯 Indicadores Clave"]
-    D -->|Segmentación| E["⚠️ Riesgo"]
-    E -->|ML| F["🤖 Predicción"]
+    D -->|Segmentación| E["⚠️ Riesgo (4 niveles)"]
+    E -->|ML| F["🤖 Predicción (RF + RL)"]
     F -->|Priorización| G["📋 Recomendaciones"]
     G -->|Acción| H["💼 Implementación"]
 ```
 
 ---
 
-## 📊 Visualizaciones Generadas
-
-### 1. Análisis Diagnóstico (`analisis_diagnostico.png`)
-Utilizado para identificar patrones operacionales
-```
-┌─────────────────┬─────────────────┐
-│ Rotación/Área   │ Clima vs Antigü.│  Exploración inicial
-├─────────────────┼─────────────────┤
-│ Compromiso Dist.│ Ausentismo/Área │  Variables clave
-├─────────────────┼─────────────────┤
-│ Desempeño/Rot.  │ Capacitación    │  Factores protectores
-└─────────────────┴─────────────────┘
-```
-
-### 2. Análisis de Riesgo (`analisis_riesgo.png`)
-Validación del modelo de segmentación
-```
-┌─────────────────┬─────────────────┐
-│ Score Distrib.  │ Violin: Rotados │  Score de riesgo
-├─────────────────┼─────────────────┤
-│ Riesgo por Área │ Matriz Riesgo   │  Validación
-└─────────────────┴─────────────────┘
-```
-
-### 3. Modelos Predictivos (`modelos_predictivos.png`)
-Comparación y validación de algoritmos
-```
-┌─────────────────┬─────────────────┐
-│ ROC Curves      │ Feature Import. │  Desempeño modelos
-├─────────────────┼─────────────────┤
-│ Conf. Matrix    │ Prob. Distrib.  │  Calibración
-└─────────────────┴─────────────────┘
-```
-
-### 4. Priorización (`priorizacion.png`)
-Mapeo de intervenciones estratégicas
-```
-┌─────────────────┬─────────────────┐
-│ Riesgo-Impacto  │ Dist. Riesgo    │  Identificación
-├─────────────────┼─────────────────┤
-│ Impacto $$      │ Áreas Críticas  │  Cuantificación
-└─────────────────┴─────────────────┘
-```
-
-**Integrados en:** `analisis_people_analytics.pdf` (páginas 14-22)
-
----
-
 ## 🎓 Insights Principales
 
-### ✅ Lo Que Funciona (Factores Protectores)
-- **Alta antigüedad** → Reduce rotación 35% (antigüedad > 10 años: 16% rotación)
-- **Compromiso alto** → Reduce rotación 42% (score 4-5: 15% rotación)
-- **Capacitación regular** → Reduce rotación 28% (5+ cursos: 15% rotación)
-- *Gráfico de referencia: `analisis_diagnostico.png` (derecha inferior)*
+### ✅ Factores Protectores
+- **Alta antigüedad** → Principal predictor (19.78% importancia)
+- **Buen clima laboral** → Segundo predictor (15.48%)
+- **Desempeño alto** → Reduce rotación (15.19%)
+- **Capacitación regular** → 7.16% importancia, 5+ cursos ↓ rotación
 
-### ⚠️ Señales de Alerta (Detectadas en el Modelo)
-- **Compromiso < 2.5/5** → Riesgo muy alto (64.8% rotación predicha)
-- **Ausentismo > 12 días/año** → Probable problema subyacente (importancia: 22%)
-- **Cero capacitación** → Estancamiento percibido (26% rotación real)
-- **Área crítica + bajo desempeño** → Doble vulnerabilidad (28% base × presión)
-- *Validado en: `analisis_riesgo.png` (violin plot)*
+### ⚠️ Señales de Alerta
+- **Área Crítica** → Correlación más fuerte con rotación (+0.185)
+- **Ausentismo alto** → +0.153 de correlación (14.44% importancia en RF)
+- **32.7% de la plantilla** (1.045 personas) en zona de riesgo alto/muy alto
+- **79 colaboradores** (Muy Alto Riesgo) presentan 30.4% de rotación real
 
-### 💡 Oportunidades Identificadas
-1. **Mentoría estructurada** en áreas críticas
-   - Población: 546 personas en riesgo medio-alto
-   - Impacto: -15% rotación esperada
-2. **Planes de desarrollo personalizados**
-   - Foco: 234 personas en riesgo muy alto
-   - Inversión: USD $12.5k (250 horas reuniones 1-a-1)
-   - ROI: USD $325k neto (Año 1)
-3. **Flexibilidad laboral** para reducir ausentismo
-   - Meta: Reducir ausentismo promedio 7.9 → 5 días/año
-   - Impacto: -8% rotación en población afectada
-4. **Reconocimiento de desempeño**
-   - Meta: Mejorar satisfacción +15 puntos
-   - Población: 831 personas con desempeño excelente (fuga de talento)
-   - *Matriz de priorización: `priorizacion.png` (superior izquierda)*
+### 💡 Oportunidades de Intervención
+1. **Acción urgente:** 79 personas Riesgo Muy Alto — USD $3.950 inversión, alto impacto
+2. **Mentoría preventiva:** 966 personas Riesgo Alto — reducir umbral de salida
+3. **Mejora de clima:** Principal variable modificable (15.48% importancia)
+4. **Planes de carrera:** Reducir estancamiento en áreas críticas (Tecnología, Operaciones)
 
 ---
 
-## � Documentación Generada
+## 📚 Documentos Generados
 
-### 📊 Documento Principal: `analisis_people_analytics.pdf` (23 páginas)
+### `analisis_people_analytics.pdf` — Informe Técnico (23 páginas)
+Secciones: Portada · EDA · Indicadores · Segmentación · Modelos ML · Áreas Críticas · Recomendaciones · Impacto Financiero · Conclusiones · Plan de Implementación
 
-**Secciones incluidas:**
-1. **Portada ejecutiva** - Contexto y métricas principales
-2. **Análisis Exploratorio** - EDA completo con tablas
-3. **Indicadores Clave** - Rotación global y por criticidad
-4. **Segmentación de Riesgo** - Score y distribución
-5. **Modelos Predictivos** - Comparación LR vs Random Forest
-6. **Áreas Críticas** - Análisis profundo por departamento
-7. **Recomendaciones** - Plan de 3 niveles de intervención
-8. **Impacto Financiero** - Proyección y ROI
-9. **Conclusiones** - Hallazgos y factores de éxito
-10. **Plan de Implementación** - Cronograma de 6 meses
-
-**Gráficos integrados:**
-- ✅ analisis_diagnostico.png (Página 14)
-- ✅ analisis_riesgo.png (Página 16)
-- ✅ modelos_predictivos.png (Página 18)
-- ✅ priorizacion.png (Página 20)
-
-**Para compilar nuevamente:**
-```bash
-xelatex analisis_people_analytics.tex
-```
+### `presentacion_people_analytics.pdf` — Presentación Ejecutiva (19 láminas)
+Beamer 16:9, tema Madrid. Incluye gráficos PGFPlots embebidos, tablas de datos y plan de intervención de 3 niveles.
 
 ---
 
@@ -405,20 +329,21 @@ xelatex analisis_people_analytics.tex
 
 - [ ] Dashboard interactivo (Tableau/Power BI)
 - [ ] API REST para predicciones en tiempo real
-- [ ] Modelo actualizable con datos nuevos
-- [ ] Análisis de sentimiento en encuestas
-- [ ] Predicción de salida por fecha específica
-- [ ] Recomendaciones de retención automáticas
-- [ ] Integración con HRIS para datos reales
+- [ ] Modelo actualizable con datos reales via HRIS
+- [ ] Análisis de sentimiento en encuestas de clima
+- [ ] Predicción de fecha estimada de salida
+- [ ] Recomendaciones de retención automáticas por perfil
 
 ---
 
 <div align="center">
 
+**Última actualización:** Mayo 2026 · **Versión:** 2.0
+
 **[⬆ Volver al inicio](#-people-analytics-financorp-chile)**
 
 </div>
 
+
 ---
 
-*Documento generado automáticamente. Para actualizaciones, ejecutar `trabajo.ipynb` nuevamente.*

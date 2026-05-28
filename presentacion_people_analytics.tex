@@ -1,0 +1,1201 @@
+% ============================================================================
+%  PRESENTACIÓN PEOPLE ANALYTICS – FINANCORP CHILE
+%  Estilo: Beamer moderno con diseño ejecutivo premium
+% ============================================================================
+\documentclass[aspectratio=169,12pt]{beamer}
+
+% ── Fuentes ──────────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ── Idioma ───────────────────────────────────────────────────────────────────
+\usepackage[spanish]{babel}
+
+% ── Matemáticas y símbolos ───────────────────────────────────────────────────
+\usepackage{amsmath,amssymb}
+
+% ── Gráficos y colores ───────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,decorations.pathreplacing}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% ── Tablas ───────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+% ── Íconos y extras ──────────────────────────────────────────────────────────
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable,raster}
+\usepackage{calc}
+
+% ============================================================================
+%  PALETA DE COLORES CORPORATIVA
+% ============================================================================
+\definecolor{NavyDeep}    {HTML}{0D1B2A}
+\definecolor{NavyMid}     {HTML}{1B3A5C}
+\definecolor{NavyLight}   {HTML}{2E6DA4}
+\definecolor{Cyan}        {HTML}{00B4D8}
+\definecolor{Teal}        {HTML}{0077B6}
+\definecolor{Gold}        {HTML}{F4A261}
+\definecolor{Amber}       {HTML}{E76F51}
+\definecolor{GreenOK}     {HTML}{2EC4B6}
+\definecolor{RedRisk}     {HTML}{E63946}
+\definecolor{GrayLight}   {HTML}{F0F4F8}
+\definecolor{GrayMid}     {HTML}{8899AA}
+\definecolor{White}       {HTML}{FFFFFF}
+\definecolor{TextDark}    {HTML}{1A1A2E}
+
+% ============================================================================
+%  TEMA BASE Y PERSONALIZACIÓN
+% ============================================================================
+\usetheme{Madrid}
+\usecolortheme[named=NavyDeep]{structure}
+
+\setbeamercolor{palette primary}    {bg=NavyDeep,  fg=White}
+\setbeamercolor{palette secondary}  {bg=NavyMid,   fg=White}
+\setbeamercolor{palette tertiary}   {bg=NavyLight, fg=White}
+\setbeamercolor{palette quaternary} {bg=Cyan,      fg=NavyDeep}
+\setbeamercolor{title}              {fg=White}
+\setbeamercolor{subtitle}           {fg=Cyan}
+\setbeamercolor{frametitle}         {bg=NavyDeep,fg=White}
+\setbeamercolor{block title}        {bg=NavyLight,fg=White}
+\setbeamercolor{block body}         {bg=GrayLight,fg=TextDark}
+\setbeamercolor{block title alerted}{bg=Amber,fg=White}
+\setbeamercolor{block body alerted} {bg=GrayLight,fg=TextDark}
+\setbeamercolor{block title example}{bg=GreenOK,fg=White}
+\setbeamercolor{block body example} {bg=GrayLight,fg=TextDark}
+\setbeamercolor{normal text}        {fg=TextDark}
+\setbeamercolor{itemize item}       {fg=Cyan}
+\setbeamercolor{itemize subitem}    {fg=NavyLight}
+\setbeamercolor{footline}           {bg=NavyDeep,fg=GrayMid}
+
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{section in toc}{series=\bfseries}
+
+\setbeamertemplate{itemize item}{\faChevronRight}
+\setbeamertemplate{itemize subitem}{\faAngleRight}
+\setbeamertemplate{navigation symbols}{}
+
+% Barra de progreso inferior
+\makeatletter
+\addtobeamertemplate{footline}{}{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \fill[Cyan,opacity=0.85]
+      (current page.south west)
+      rectangle
+      ($(current page.south west)+(\insertframenumber/\inserttotalframenumber*\paperwidth,2pt)$);
+  \end{tikzpicture}%
+}
+\makeatother
+
+% ============================================================================
+%  COMANDOS AUXILIARES
+% ============================================================================
+
+% Caja de KPI  \kpibox{color}{icono}{valor}{etiqueta}
+\newcommand{\kpibox}[4]{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=#1!10!White,
+    colframe=#1,
+    arc=4pt,
+    boxrule=1.5pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    width=\linewidth,
+    halign=center
+  ]
+    \centering
+    {\color{#1}\Large #2}\\[2pt]
+    {\color{NavyDeep}\Large\bfseries #3}\\[1pt]
+    {\color{GrayMid}\footnotesize #4}
+  \end{tcolorbox}%
+}
+
+% Caja de hallazgo  \hallabox{color}{titulo}{texto}
+\newcommand{\hallabox}[3]{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=White,
+    colframe=#1,
+    arc=3pt,
+    boxrule=1pt,
+    borderline west={3pt}{0pt}{#1},
+    left=6pt, right=4pt, top=3pt, bottom=3pt
+  ]
+    {\color{#1}\small\bfseries #2}\\[-2pt]
+    {\small #3}
+  \end{tcolorbox}%
+}
+
+% ============================================================================
+%  META-DATOS
+% ============================================================================
+\title[People Analytics · FinanCorp Chile]{%
+  \textbf{People Analytics}\\
+  {\large Diagnóstico Predictivo de Rotación y Fuga de Talento}}
+\subtitle{FinanCorp Chile · Análisis Estratégico Mayo 2026}
+\date{Mayo 2026}
+\author{Gerencia de Personas · Área de Analytics}
+\institute{FinanCorp Chile}
+
+% ============================================================================
+%  DOCUMENTO
+% ============================================================================
+\begin{document}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  PORTADA
+% ─────────────────────────────────────────────────────────────────────────────
+{
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+\begin{frame}[plain]
+  \begin{tikzpicture}[overlay,remember picture]
+    % Fondo degradado
+    \fill[NavyDeep] (current page.south west) rectangle (current page.north east);
+    \fill[NavyMid,opacity=0.5]
+      ([xshift=12cm]current page.south west) --
+      (current page.north east) --
+      ([yshift=-4cm]current page.north east) -- cycle;
+    % Acento superior izquierdo
+    \fill[Cyan,opacity=0.7]
+      (current page.north west) rectangle
+      ([xshift=4pt,yshift=-3pt]current page.north west |- {(0,0)});
+    \draw[Cyan,line width=2pt]
+      ([yshift=-0.06\paperheight]current page.north west) --
+      ([yshift=-0.06\paperheight]current page.north east);
+    \draw[Teal,line width=0.5pt,opacity=0.4]
+      ([yshift=-0.065\paperheight]current page.north west) --
+      ([yshift=-0.065\paperheight]current page.north east);
+
+    % Patrón de puntos decorativo
+    \foreach \x in {0.7,0.75,...,0.98}
+      \foreach \y in {0.05,0.10,...,0.55}
+        \fill[White,opacity=0.04] ([xshift=\x\paperwidth,yshift=\y\paperheight]current page.south west) circle(1pt);
+
+    % Línea acento inferior
+    \draw[Gold,line width=2pt]
+      ([yshift=0.12\paperheight]current page.south west) --
+      ([yshift=0.12\paperheight,xshift=0.45\paperwidth]current page.south west);
+  \end{tikzpicture}
+
+  \vspace{0.8cm}
+  \begin{columns}[T]
+    \column{0.62\textwidth}
+      {\color{Cyan}\footnotesize\bfseries\MakeUppercase{FinanCorp Chile · Mayo 2026}}
+      \vspace{0.2cm}
+
+      {\color{White}\fontsize{26}{30}\selectfont\bfseries People\\Analytics}
+      \vspace{0.15cm}
+
+      {\color{GrayLight}\fontsize{13}{16}\selectfont
+        Diagnóstico Predictivo de Rotación,\\
+        Retención y Fuga de Talento}
+      \vspace{0.35cm}
+
+      \begin{tikzpicture}
+        \draw[Cyan,line width=1.5pt] (0,0) -- (6,0);
+        \draw[Gold,line width=0.5pt] (0,-3pt) -- (3,-3pt);
+      \end{tikzpicture}
+      \vspace{0.3cm}
+
+      {\color{GrayMid}\small
+        \faUsers\ \ 3.200 colaboradores \quad
+        \faCalendar\ \ Mayo 2026}
+
+    \column{0.36\textwidth}
+      \vspace{0.4cm}
+      % Panel de KPIs en portada
+      \begin{tcolorbox}[
+        enhanced, colback=NavyMid, colframe=Cyan,
+        arc=6pt, boxrule=1pt,
+        left=6pt, right=6pt, top=6pt, bottom=6pt
+      ]
+        \centering
+        {\color{Cyan}\footnotesize\bfseries MÉTRICAS CLAVE}
+        \vspace{4pt}
+
+        \begin{tabular}{@{}l@{\hspace{4pt}}r@{}}
+          {\color{GrayMid}\scriptsize Rotación actual} &
+            {\color{RedRisk}\bfseries 22\%} \\[3pt]
+          {\color{GrayMid}\scriptsize Salidas/año} &
+            {\color{White}\bfseries 703} \\[3pt]
+          {\color{GrayMid}\scriptsize Costo anual} &
+            {\color{Gold}\bfseries \$2.1M USD} \\[3pt]
+          {\color{GrayMid}\scriptsize Modelo ROC-AUC} &
+            {\color{GreenOK}\bfseries 67.7\%} \\[3pt]
+          {\color{GrayMid}\scriptsize Ahorro potencial} &
+            {\color{GreenOK}\bfseries \$1.3M USD} \\
+        \end{tabular}
+      \end{tcolorbox}
+  \end{columns}
+\end{frame}
+}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  ÍNDICE
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}{Agenda}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \tableofcontents[sections={1-3}]
+    \column{0.48\textwidth}
+      \tableofcontents[sections={4-5}]
+  \end{columns}
+\end{frame}
+
+% ============================================================================
+\section[Contexto]{Contexto y Problemática}
+% ============================================================================
+
+\begin{frame}[shrink=5]{El Desafío de FinanCorp Chile}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \textbf{\color{NavyDeep}Situación Actual}
+      \vspace{3pt}
+      \begin{itemize}\setlength\itemsep{2pt}
+        \item Empresa de servicios financieros con \textbf{3.200 colaboradores}
+        \item Rotación del \textbf{22\%} anual vs.\ benchmark industria \textbf{15--18\%}
+        \item \textbf{703 salidas anuales} con costo promedio \$3.000 USD/persona
+        \item Concentración crítica en Tecnología, Riesgo y Operaciones
+      \end{itemize}
+      \vspace{4pt}
+      \hallabox{RedRisk}{\faExclamationTriangle\ \ Brecha vs.\ Industria}{%
+        Rotación supera en \textbf{4--7 pp} el benchmark del sector financiero,
+        representando un riesgo operacional y financiero significativo.}
+
+    \column{0.44\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=GrayLight, colframe=NavyLight,
+        arc=5pt, boxrule=1pt, title={\color{White}\bfseries Impacto Financiero},
+        attach boxed title to top left={yshift=-2mm,xshift=5mm},
+        boxed title style={colback=NavyLight}
+      ]
+        \centering
+        \begin{tikzpicture}
+          \begin{axis}[
+            ybar, width=4.8cm, height=3.8cm,
+            bar width=13pt,
+            xtick={1,2,3},
+            xticklabels={A\~no 1, A\~no 2, A\~no 3},
+            ymin=0, ymax=2500,
+            ytick={500,1000,1500,2000,2500},
+            yticklabels={\$0.5M,\$1M,\$1.5M,\$2M,\$2.5M},
+            tick label style={font=\tiny},
+            axis lines=left,
+            ymajorgrids=true, grid style={dotted,gray!30},
+            every axis plot/.append style={fill=RedRisk!70,draw=none}
+          ]
+            \addplot coordinates {(1,2109) (2,2109) (3,2109)};
+          \end{axis}
+        \end{tikzpicture}\\
+        {\scriptsize\color{GrayMid}Costo anual sin intervención}
+      \end{tcolorbox}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}{Objetivos y Metodología}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{\faTarget\ \ Objetivos}
+        \begin{enumerate}\setlength\itemsep{1pt}
+          \item Identificar factores \textbf{causales} de rotación
+          \item Construir \textbf{modelo predictivo} (ML)
+          \item \textbf{Segmentar} colaboradores por nivel de riesgo
+          \item Priorizar \textbf{intervenciones} con ROI
+          \item Proyectar \textbf{impacto financiero} esperado
+        \end{enumerate}
+      \end{block}
+
+    \column{0.48\textwidth}
+      \begin{block}{\faCogs\ \ Metodología}
+        \begin{itemize}\setlength\itemsep{1pt}
+          \item \textbf{EDA:} Estadísticas descriptivas y correlaciones
+          \item \textbf{Scoring:} Índice de riesgo ponderado (0--100)
+          \item \textbf{ML:} Regresión Logística vs.\ Random Forest
+          \item \textbf{Priorización:} Matriz impacto × urgencia
+          \item \textbf{ROI:} Análisis costo-beneficio a 3 años
+        \end{itemize}
+      \end{block}
+  \end{columns}
+  \vspace{2pt}
+  \begin{tcolorbox}[
+    enhanced, colback=Cyan!8, colframe=Cyan,
+    arc=3pt, boxrule=0.8pt, left=4pt, right=4pt, top=2pt, bottom=2pt
+  ]
+    {\color{NavyDeep}\small\bfseries Dataset:} {\small 3.200 colaboradores · 9 variables predictoras · variable objetivo: \texttt{Rotación}}
+  \end{tcolorbox}
+\end{frame}
+
+% ============================================================================
+\section[EDA]{Análisis Exploratorio}
+% ============================================================================
+
+\begin{frame}[shrink=3]{Dataset: Estadísticas Descriptivas}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \small
+      \begin{tabular}{@{}lrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}\color{White}\textbf{Variable} &
+          \color{White}\textbf{Media} &
+          \color{White}\textbf{Descripción} \\
+        \midrule
+        \rowcolor{GrayLight}Antigüedad (años) & 3.00 & Dist.\ exponencial \\
+        Desempeño (1--5)  & 3.17 & Escala evaluación \\
+        \rowcolor{GrayLight}Clima (1--5)      & 3.06 & Ambiente laboral \\
+        Compromiso (1--5) & 2.20 & \textbf{Factor crítico} \\
+        \rowcolor{GrayLight}Ausentismo (días) & 4.89 & Indicador estrés \\
+        Capacitación (cur/año) & 2.1 & Desarrollo \\
+        \rowcolor{GrayLight}\textbf{Rotación} & \textbf{22\%} & \textbf{Variable objetivo} \\
+        \bottomrule
+      \end{tabular}
+
+    \column{0.44\textwidth}
+      \centering
+      {\small\bfseries\color{NavyDeep}Distribución por Área}
+      \vspace{2pt}
+      \begin{tikzpicture}
+        \begin{axis}[
+          xbar, width=5cm, height=4.5cm,
+          bar width=7pt,
+          symbolic y coords={Administración,Legal,Personas,Finanzas,Riesgo,Clientes,Operaciones,Tecnología},
+          ytick=data,
+          xmin=0, xmax=900,
+          tick label style={font=\tiny},
+          axis lines=left,
+          xmajorgrids=true, grid style={dotted,gray!30},
+          every axis plot/.append style={fill=NavyLight!80,draw=none}
+        ]
+          \addplot coordinates {
+            (32,Administración)(64,Legal)(128,Personas)
+            (256,Finanzas)(576,Riesgo)(640,Clientes)
+            (704,Operaciones)(800,Tecnología)
+          };
+        \end{axis}
+      \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}[shrink=5]{Correlaciones con Rotación}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          xbar, width=6cm, height=5cm,
+          bar width=8pt,
+          symbolic y coords={Antigüedad,Movilidad,Capacitación,Desempeño,Clima,Compromiso,Ausentismo,Área Crít.},
+          ytick={Antigüedad,Movilidad,Capacitación,Desempeño,Clima,Compromiso,Ausentismo,Área Crít.},
+          xmin=-0.2, xmax=0.25,
+          tick label style={font=\scriptsize},
+          axis lines=left,
+          xmajorgrids=true, grid style={dotted,gray!25},
+          xtick={-0.2,-0.1,0,0.1,0.2},
+          xticklabels={-0.2,-0.1,0,0.1,0.2},
+          title={\scriptsize Correlación de Pearson con Rotación},
+          title style={font=\scriptsize,color=NavyMid}
+        ]
+          % Negativas (protectoras) en azul
+          \addplot[fill=NavyLight!70,draw=none, bar shift=0pt] coordinates {
+            (-0.002,Antigüedad)(-0.009,Movilidad)(-0.017,Capacitación)
+            (-0.063,Desempeño)(-0.067,Clima)(-0.099,Compromiso)
+          };
+          % Positiva de riesgo
+          \addplot[fill=RedRisk!70,draw=none, bar shift=0pt] coordinates {
+            (0.114,Ausentismo)
+          };
+          % Más fuerte positivo
+          \addplot[fill=Amber!90,draw=none, bar shift=0pt] coordinates {
+            (0.185,Área Crít.)
+          };
+        \end{axis}
+      \end{tikzpicture}
+
+    \column{0.46\textwidth}
+      \vspace{2pt}
+      \hallabox{Amber}{\faExclamationCircle\ \ Factor N°1: Área Crítica}{%
+        Correlación \textbf{+0.185}: pertenecer a un
+        área crítica es el predictor más fuerte
+        de rotación en el modelo.}
+      \vspace{3pt}
+      \hallabox{RedRisk}{\faChartLine\ \ Factor N°2: Ausentismo}{%
+        Correlación \textbf{+0.114}. Señal de alerta
+        temprana de intención de abandono.}
+      \vspace{3pt}
+      \hallabox{NavyLight}{\faHeart\ \ Factor N°3: Compromiso}{%
+        Correlación \textbf{--0.099}. Bajo compromiso
+        asociado a mayor probabilidad de rotar.}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}[shrink=12]{Panorama Global de Rotación}
+  \begin{columns}[T]
+    \column{0.3\textwidth}
+      \kpibox{RedRisk}{\faArrowUp}{22\%}{Rotación Global}
+      \vspace{3pt}
+      \kpibox{Amber}{\faUsers}{703}{Salidas / Año}
+      \vspace{3pt}
+      \kpibox{GreenOK}{\faDollarSign}{\$2.1M}{Costo USD / Año}
+
+    \column{0.67\textwidth}
+      \small
+      \begin{tabular}{@{}lrrrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}
+          \color{White}\textbf{Categoría} &
+          \color{White}\textbf{N} &
+          \color{White}\textbf{Rotación} &
+          \color{White}\textbf{Salidas} &
+          \color{White}\textbf{USD} \\
+        \midrule
+        \rowcolor{RedRisk!15}\textbf{Áreas Críticas}
+          & 2.720 & \textbf{25.2\%} & 685 & \$2.06M \\
+        Otras Áreas
+          & 480 & 3.8\% & 18 & \$54K \\
+        \midrule
+        \rowcolor{GrayLight}\textbf{TOTAL}
+          & \textbf{3.200} & \textbf{22.0\%} & \textbf{703} & \textbf{\$2.11M} \\
+        \bottomrule
+      \end{tabular}
+      \vspace{4pt}
+
+      \begin{tcolorbox}[
+        enhanced, colback=RedRisk!8, colframe=RedRisk,
+        arc=3pt, boxrule=0.8pt, left=4pt, right=4pt, top=2pt, bottom=2pt
+      ]
+        {\color{RedRisk}\small\bfseries \faExclamationTriangle\ \ Diferencial Crítico:}
+        {\small La rotación en áreas críticas es \textbf{6.6× superior}
+        (25.2\% vs.\ 3.8\%). Diferencia: \textbf{21.4 pp}.}
+      \end{tcolorbox}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}{Rotación por Antigüedad y Desempeño}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      {\small\bfseries\color{NavyDeep}Por Tramo de Antigüedad}
+      \vspace{2pt}
+      \begin{tikzpicture}
+        \begin{axis}[
+          ybar, width=5.5cm, height=3.8cm,
+          bar width=12pt,
+          xtick={1,2,3,4,5},
+          xticklabels={0--1a,1--2a,2--5a,5--10a,+10a},
+          ymin=0, ymax=40,
+          ytick={0,10,20,30,40},
+          yticklabels={0\%,10\%,20\%,30\%,40\%},
+          tick label style={font=\tiny},
+          axis lines=left,
+          ymajorgrids=true, grid style={dotted,gray!30}
+        ]
+          \addplot[fill=RedRisk!80,draw=none]
+            coordinates {(5,24.1)};
+          \addplot[fill=Gold!80,draw=none]
+            coordinates {(1,22.2)(2,21.5)(3,22.7)};
+          \addplot[fill=GreenOK!80,draw=none]
+            coordinates {(4,20.3)};
+        \end{axis}
+      \end{tikzpicture}\\
+      {\tiny\color{GrayMid}Rotación uniforme entre tramos (20--24\%)}
+
+    \column{0.48\textwidth}
+      {\small\bfseries\color{NavyDeep}Por Nivel de Desempeño}
+      \vspace{2pt}
+      \begin{tikzpicture}
+        \begin{axis}[
+          ybar, width=5.5cm, height=3.8cm,
+          bar width=14pt,
+          xtick={1,2,3,4},
+          xticklabels={Bajo,Medio,Bueno,Excelente},
+          ymin=0, ymax=40,
+          ytick={0,10,20,30,40},
+          yticklabels={0\%,10\%,20\%,30\%,40\%},
+          tick label style={font=\tiny},
+          axis lines=left,
+          ymajorgrids=true, grid style={dotted,gray!30}
+        ]
+          \addplot[fill=RedRisk!80,draw=none]
+            coordinates {(1,26.3)};
+          \addplot[fill=Gold!80,draw=none]
+            coordinates {(2,22.5)(3,22.4)};
+          \addplot[fill=GreenOK!80,draw=none]
+            coordinates {(4,17.1)};
+        \end{axis}
+      \end{tikzpicture}\\
+      {\tiny\color{GrayMid}Alto desempeño retiene (17\%); bajo desempeño rota más (26\%)}
+  \end{columns}
+  \vspace{2pt}
+  \hallabox{Gold}{\faLightbulb\ \ Hallazgo Clave}{%
+    Bajo desempeño: 26.3\% rotación. Excelente desempeño: 17.1\% (menor rotación, mejores condiciones).}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}{Desglose por Área Funcional}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+      \setlength{\tabcolsep}{4pt}%
+      \resizebox{\linewidth}{!}{%
+      \begin{tabular}{@{}lrrrrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}
+          \color{White}\textbf{Área} &
+          \color{White}\textbf{N} &
+          \color{White}\textbf{Rota.} &
+          \color{White}\textbf{Salidas} &
+          \color{White}\textbf{Costo} &
+          \color{White}\textbf{\%~Cía.} \\
+        \midrule
+        \rowcolor{RedRisk!20}Atención Cli.  & 640  & 27.8\% & 178 & \$534K & 25.3\% \\
+        \rowcolor{RedRisk!12}Tecnología     & 800  & 25.5\% & 204 & \$612K & 29.0\% \\
+        \rowcolor{RedRisk!8} Riesgo/Cump.  & 576  & 24.0\% & 138 & \$414K & 19.6\% \\
+        \rowcolor{RedRisk!5} Operaciones   & 704  & 23.4\% & 165 & \$495K & 23.5\% \\
+        \rowcolor{GreenOK!10}Personas       & 128  &  4.7\% &   6 & \$18K  &  0.9\% \\
+        \rowcolor{GreenOK!10}Finanzas       & 256  &  4.3\% &  11 & \$33K  &  1.6\% \\
+        \rowcolor{GreenOK!10}Legal          &  64  &  1.6\% &   1 & \$3K   &  0.1\% \\
+        \rowcolor{GreenOK!10}Administración &  32  &  0.0\% &   0 & \$0K   &  0.0\% \\
+        \midrule
+        \rowcolor{GrayLight}\textbf{TOTAL} & \textbf{3.200} & \textbf{22.0\%}
+          & \textbf{703} & \textbf{\$2.1M} & \textbf{100\%} \\
+        \bottomrule
+      \end{tabular}%
+      }
+
+    \column{0.40\textwidth}
+      {\scriptsize\bfseries\color{NavyDeep}Tasa de Rotación por Área (\%)}
+      \vspace{5pt}
+      \begin{tikzpicture}
+        % Líneas de grilla verticales
+        \draw[gray!22,thin] (0.857cm,-0.08cm)--(0.857cm,3.06cm);
+        \draw[gray!22,thin] (1.714cm,-0.08cm)--(1.714cm,3.06cm);
+        \draw[gray!22,thin] (2.571cm,-0.08cm)--(2.571cm,3.06cm);
+        % Barras (de abajo: Legal → Tecnología)
+        % Escala: 1% = 3cm/35 = 0.0857cm
+        \fill[GreenOK!80]  (0,0.00cm) rectangle (0.14cm, 0.25cm); % Legal  1.6%
+        \fill[GreenOK!80]  (0,0.52cm) rectangle (0.37cm, 0.77cm); % Finanzas 4.3%
+        \fill[Gold!65]     (0,1.04cm) rectangle (2.00cm, 1.29cm); % Operaciones 23.4%
+        \fill[Gold!85]     (0,1.56cm) rectangle (2.06cm, 1.81cm); % Riesgo 24.0%
+        \fill[RedRisk!65]  (0,2.08cm) rectangle (2.19cm, 2.33cm); % Tecnología 25.5%
+        \fill[RedRisk!85]  (0,2.60cm) rectangle (2.38cm, 2.85cm); % Atención 27.8%
+        % Etiquetas eje Y
+        \node[anchor=east,font=\tiny] at (-0.07cm,0.125cm) {Legal};
+        \node[anchor=east,font=\tiny] at (-0.07cm,0.645cm) {Finanzas};
+        \node[anchor=east,font=\tiny] at (-0.07cm,1.165cm) {Operaciones};
+        \node[anchor=east,font=\tiny] at (-0.07cm,1.685cm) {Riesgo};
+        \node[anchor=east,font=\tiny] at (-0.07cm,2.205cm) {Tecnología};
+        \node[anchor=east,font=\tiny] at (-0.07cm,2.725cm) {Atención};
+        % Eje Y
+        \draw[gray!50,thin] (0,-0.05cm)--(0,2.97cm);
+        % Eje X con flecha
+        \draw[gray!50,thin,->] (-0.03cm,-0.05cm)--(3.1cm,-0.05cm);
+        % Ticks y etiquetas eje X
+        \foreach \xv/\lbl in {0/0, 0.857/10, 1.714/20, 2.571/30} {
+          \draw[gray!50,thin] (\xv cm,-0.05cm)--(\xv cm,-0.13cm);
+          \node[font=\tiny,anchor=north] at (\xv cm,-0.15cm) {\lbl};
+        }
+      \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}[shrink=10]{Modelo de Score de Riesgo (0--100)}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+      {\footnotesize La puntuación de riesgo es una combinación ponderada de los
+      factores predictores más relevantes:}
+      \vspace{1pt}
+
+      \[
+      \textstyle\text{Score} = \sum_{i=1}^{n} w_i \cdot f_i(x_i)
+      \]
+
+      \vspace{1pt}
+      \footnotesize
+      \begin{tabular}{@{}lrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}\color{White}\textbf{Factor} &
+          \color{White}\textbf{Peso} &
+          \color{White}\textbf{Umbral} \\
+        \midrule
+        \rowcolor{RedRisk!15}Compromiso Bajo & 35\% & $<2.5/5$ \\
+        \rowcolor{Amber!15}  Ausentismo Alto & 25\% & $>12$ días/año \\
+        \rowcolor{Gold!15}   Bajo Desempeño  & 20\% & $<2.5/5$ \\
+        Falta Capacitación   & 10\% & $<1$ curso/año \\
+        \rowcolor{GrayLight} Estancamiento   &  5\% & Sin movilidad 3+a \\
+        Área Crítica         &  5\% & Binaria \\
+        \bottomrule
+      \end{tabular}
+
+    \column{0.46\textwidth}
+      \vspace{1pt}
+      \footnotesize
+      \begin{tabular}{@{}lrrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}
+          \color{White}\textbf{Nivel} &
+          \color{White}\textbf{N} &
+          \color{White}\textbf{\%} &
+          \color{White}\textbf{Rot.} \\
+        \midrule
+        \rowcolor{GreenOK!15}  Bajo (0--25)   &   724 & 22.6\% & 16.9\% \\
+        \rowcolor{Gold!15}     Medio (25--50) & 1.385 & 43.3\% & 21.1\% \\
+        \rowcolor{Amber!20}    Alto (50--75)  &   966 & 30.2\% & 27.1\% \\
+        \rowcolor{RedRisk!20}  Muy Alto (75+) &    79 &  2.5\% & 30.4\% \\
+        \midrule
+        \textbf{TOTAL} & \textbf{3.200} & \textbf{100\%} & \textbf{22.0\%} \\
+        \bottomrule
+      \end{tabular}
+      \vspace{2pt}
+      \hallabox{RedRisk}{\faFire\ \ Concentración de Riesgo}{%
+        \footnotesize Solo el \textbf{32.7\%} (1.045 personas) en riesgo
+        Alto+Muy Alto presenta tasa de rotación real de \textbf{27--30\%}.}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}[shrink=5]{Riesgo por Área: Mapa de Calor}
+  \begin{columns}[T]
+    \column{0.54\textwidth}
+      \footnotesize
+      \begin{tabular}{@{}lrrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}
+          \color{White}\textbf{Área} &
+          \color{White}\textbf{A+MA} &
+          \color{White}\textbf{Total} &
+          \color{White}\textbf{\%} \\
+        \midrule
+        \rowcolor{RedRisk!20} Tecnología    & 285 & 800 & 35.6\% \\
+        \rowcolor{RedRisk!12} Operaciones   & 236 & 704 & 33.5\% \\
+        \rowcolor{Amber!15}   Atención Cli. & 222 & 640 & 34.7\% \\
+        \rowcolor{Amber!10}   Riesgo/Cump.  & 190 & 576 & 33.0\% \\
+        \rowcolor{Gold!8}     Finanzas      &  61 & 256 & 23.8\% \\
+        \rowcolor{GreenOK!8}  Personas      &  24 & 128 & 18.8\% \\
+        \rowcolor{GreenOK!5}  Legal         &  22 &  64 & 34.4\% \\
+        \rowcolor{GreenOK!5}  Admin.        &   5 &  32 & 15.6\% \\
+        \bottomrule
+      \end{tabular}
+
+    \column{0.43\textwidth}
+      \vspace{4pt}
+      \begin{tcolorbox}[
+        enhanced, colback=NavyDeep!5, colframe=NavyLight,
+        arc=5pt, boxrule=1pt, left=3pt, right=3pt, top=4pt, bottom=4pt
+      ]
+        \centering
+        {\color{NavyDeep}\footnotesize\bfseries Personas con Riesgo Alto/Muy Alto}
+        \vspace{3pt}
+
+        \begin{tikzpicture}
+          \begin{axis}[
+            ybar, width=5.2cm, height=3.8cm,
+            bar width=9pt,
+            symbolic x coords={Otras,Riesgo,Clientes,Oper.,Tecnol.},
+            xtick={Otras,Riesgo,Clientes,Oper.,Tecnol.},
+            enlarge x limits=0.15,
+            ymin=0, ymax=45,
+            ytick={0,10,20,30,40},
+            yticklabels={0\%,10\%,20\%,30\%,40\%},
+            tick label style={font=\tiny},
+            x tick label style={font=\tiny, rotate=30, anchor=east},
+            axis lines=left,
+            ymajorgrids=true, grid style={dotted,gray!25},
+            title={\tiny \% Pers. Alto/Muy Alto Riesgo},
+            title style={font=\tiny,color=NavyMid}
+          ]
+            \addplot[fill=NavyLight!60,draw=none, bar shift=0pt]
+              coordinates {(Otras,21.0)};
+            \addplot[fill=Gold!80,draw=none, bar shift=0pt]
+              coordinates {(Riesgo,33.0)(Clientes,34.7)};
+            \addplot[fill=RedRisk!80,draw=none, bar shift=0pt]
+              coordinates {(Oper.,33.5)(Tecnol.,35.6)};
+          \end{axis}
+        \end{tikzpicture}
+      \end{tcolorbox}
+  \end{columns}
+\end{frame}
+
+% ============================================================================
+\section[Modelo ML]{Modelo Predictivo ML}
+% ============================================================================
+
+\begin{frame}[shrink=5]{Comparación de Modelos de Machine Learning}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \footnotesize
+      \begin{tabular}{@{}lrrrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}
+          \color{White}\textbf{Modelo} &
+          \color{White}\textbf{Prec.} &
+          \color{White}\textbf{AUC} &
+          \color{White}\textbf{Sens.} &
+          \color{White}\textbf{Espec.} \\
+        \midrule
+        Reg.\ Logística & 78\% & 0.677 & 1.0\% & 100\% \\
+        \rowcolor{GreenOK!20}
+        \textbf{Random Forest} \faAward
+          & \textbf{78\%} & \textbf{0.659} & \textbf{0.0\%} & \textbf{100\%} \\
+        \bottomrule
+      \end{tabular}
+      \vspace{8pt}
+
+      \begin{tcolorbox}[
+        enhanced, colback=GreenOK!8, colframe=GreenOK,
+        arc=3pt, boxrule=0.8pt, left=4pt, right=4pt, top=2pt, bottom=2pt
+      ]
+        {\color{GreenOK}\bfseries\footnotesize \faCheckCircle\ \ Modelo Seleccionado:}\\
+        {\footnotesize\textbf{Random Forest} — AUC 0.659.
+        Seleccionado por robustez e interpretabilidad en segmentación.}
+      \end{tcolorbox}
+      \vspace{2pt}
+      {\footnotesize\textbf{\color{NavyDeep}Matriz de Confusión}}\\[2pt]
+      \footnotesize
+      \begin{tabular}{@{}r|cc@{}}
+        & \textbf{Pred.\ No} & \textbf{Pred.\ Sí} \\
+        \hline
+        \textbf{Real No} & \cellcolor{GreenOK!20}499 & \cellcolor{Amber!30}0 \\
+        \textbf{Real Sí} & \cellcolor{RedRisk!20}141   & \cellcolor{GreenOK!20}0 \\
+      \end{tabular}
+
+    \column{0.44\textwidth}
+      \resizebox{\linewidth}{!}{\bfseries\color{NavyDeep}Importancia de Variables (Random Forest)}
+      \vspace{3pt}
+      \begin{tikzpicture}
+        \begin{axis}[
+          xbar, width=3.4cm, height=5.4cm,
+          bar width=8pt,
+          symbolic y coords={Movilidad,Capacitación,Área Crit.,Compromiso,Ausentismo,Desempeño,Clima,Antigüedad},
+          ytick={Movilidad,Capacitación,Área Crit.,Compromiso,Ausentismo,Desempeño,Clima,Antigüedad},
+          xmin=0, xmax=22,
+          enlarge y limits=0.07,
+          xtick={0,5,10,15,20},
+          tick label style={font=\tiny},
+          yticklabel style={font=\tiny, anchor=east},
+          axis x line=bottom,
+          axis y line=left,
+          xmajorgrids=true, grid style={dotted,gray!25},
+          xlabel={\tiny Importancia (\%)},
+          xlabel style={font=\tiny, yshift=-2pt}
+        ]
+          \addplot[fill=NavyLight!70,draw=none, bar shift=0pt] coordinates {
+            (1.42,Movilidad)(7.16,Capacitación)(12.14,Área Crit.)
+            (14.39,Compromiso)(14.44,Ausentismo)
+          };
+          \addplot[fill=Amber!80,draw=none, bar shift=0pt] coordinates {
+            (15.19,Desempeño)(15.48,Clima)
+          };
+          \addplot[fill=RedRisk!80,draw=none, bar shift=0pt] coordinates {
+            (19.78,Antigüedad)
+          };
+        \end{axis}
+      \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}[shrink=3]{Curva ROC y Capacidad Predictiva}
+  \begin{columns}[T]
+    \column{0.54\textwidth}
+      \centering
+      {\small\bfseries\color{NavyDeep}Curva ROC Comparativa}
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=7cm, height=5cm,
+          xmin=0, xmax=1, ymin=0, ymax=1,
+          xlabel={\scriptsize Tasa Falsos Positivos (FPR)},
+          ylabel={\scriptsize Tasa Verdaderos Positivos (TPR)},
+          xlabel style={font=\scriptsize},
+          ylabel style={font=\scriptsize},
+          tick label style={font=\tiny},
+          axis lines=left,
+          grid=both, grid style={dotted,gray!25},
+          legend style={font=\tiny, at={(0.95,0.15)}, anchor=south east}
+        ]
+          % Diagonal aleatoria
+          \addplot[gray,dashed,thin] coordinates {(0,0)(1,1)};
+          % Random Forest (AUC=0.659)
+          \addplot[NavyLight,thick,smooth] coordinates {
+            (0,0)(0.05,0.20)(0.10,0.35)(0.20,0.52)
+            (0.30,0.63)(0.50,0.75)(0.70,0.86)(1.0,1.0)
+          };
+          % Reg. Logística (AUC=0.677)
+          \addplot[Gold,thick,smooth,dashed] coordinates {
+            (0,0)(0.05,0.22)(0.10,0.37)(0.20,0.54)
+            (0.30,0.65)(0.50,0.77)(0.70,0.87)(1.0,1.0)
+          };
+          \legend{Azar, RF (AUC=0.66), LogReg (AUC=0.68)}
+        \end{axis}
+      \end{tikzpicture}
+
+    \column{0.42\textwidth}
+      \vspace{3pt}
+      \begin{block}{\faInfoCircle\ \ ¿Qué significa AUC 0.68?}
+        \small
+        El modelo AUC 0.68 discrimina mejor que el azar:
+        ordena personas por probabilidad de fuga con
+        68\% de acierto al comparar pares rotador/no rotador.
+      \end{block}
+      \vspace{3pt}
+      \hallabox{GreenOK}{\faBullseye\ \ Segmentación de Riesgo}{%
+        Con AUC 0.677, el modelo ordena a los 3.200
+        colaboradores por nivel de riesgo, priorizando
+        intervenciones en el \textbf{32.7\%} en zona
+        Alta+Muy Alta.}
+  \end{columns}
+\end{frame}
+
+% ============================================================================
+\section[Plan de Acción]{Plan de Acción}
+% ============================================================================
+
+\begin{frame}{Matriz de Priorización: Riesgo × Impacto}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=6.5cm, height=5.5cm,
+          xmin=0, xmax=110, ymin=0, ymax=110,
+          xlabel={\scriptsize Score de Riesgo (0--100)},
+          ylabel={\scriptsize Impacto Organizacional (0--100)},
+          xlabel style={font=\scriptsize},
+          ylabel style={font=\scriptsize},
+          tick label style={font=\tiny},
+          axis lines=left, grid=both, grid style={dotted,gray!20}
+        ]
+          % Zonas de color
+          \fill[GreenOK,opacity=0.08] (axis cs:0,0) rectangle (axis cs:50,50);
+          \fill[Gold,opacity=0.12]    (axis cs:50,0) rectangle (axis cs:75,75);
+          \fill[Amber,opacity=0.12]   (axis cs:0,50) rectangle (axis cs:50,100);
+          \fill[RedRisk,opacity=0.15] (axis cs:75,75) rectangle (axis cs:100,100);
+          % Etiquetas de zona
+          \node[font=\tiny,color=GreenOK!70!black] at (axis cs:25,25) {BAJO};
+          \node[font=\tiny,color=Amber!70!black]   at (axis cs:25,75) {MEDIO};
+          \node[font=\tiny,color=Gold!70!black]    at (axis cs:62,35) {MEDIO-A};
+          \node[font=\tiny,color=RedRisk]          at (axis cs:87,87) {\bfseries CRÍTICO};
+          % Puntos de ejemplo – tres series con colores fijos
+          \addplot[only marks, mark=*, mark size=2.5pt,
+            draw=GreenOK, fill=GreenOK!70, opacity=0.9
+          ] coordinates {
+            (20,30)(15,45)(30,20)(40,35)
+          };
+          \addplot[only marks, mark=*, mark size=2.5pt,
+            draw=Gold, fill=Gold!80, opacity=0.9
+          ] coordinates {
+            (55,60)(65,40)(70,70)(60,55)
+          };
+          \addplot[only marks, mark=*, mark size=2.5pt,
+            draw=RedRisk, fill=RedRisk!80, opacity=0.9
+          ] coordinates {
+            (80,85)(90,80)(85,90)(95,75)(75,80)(88,88)
+          };
+        \end{axis}
+      \end{tikzpicture}
+
+    \column{0.44\textwidth}
+      \vspace{4pt}
+      \small
+      \begin{tabular}{@{}lrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}
+          \color{White}\textbf{Zona} &
+          \color{White}\textbf{N} &
+          \color{White}\textbf{Acción} \\
+        \midrule
+        \rowcolor{RedRisk!20}\textbf{Muy Alto} &  79 & \textbf{Inmediata} \\
+        \rowcolor{Amber!15}  Alto           & 966 & Urgente \\
+        \rowcolor{Gold!10}   Medio          & 1.385 & Preventiva \\
+        \rowcolor{GreenOK!10}Bajo           & 724 & Monitoreo \\
+        \bottomrule
+      \end{tabular}
+      \vspace{8pt}
+      \hallabox{RedRisk}{\faRocket\ \ Acción Prioritaria}{%
+        Las \textbf{79 personas en Riesgo Muy Alto}
+        (2.5\%) presentan una tasa de rotación real del \textbf{30.4\%}.
+        Intervenir aquí primero maximiza
+        el ROI de las acciones de retención.}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}{Proyección Financiera: 3 Escenarios}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+      \small
+      \begin{tabular}{@{}lrrr@{}}
+        \toprule
+        \rowcolor{NavyDeep}
+          \color{White}\textbf{Concepto} &
+          \color{White}\textbf{Año 1} &
+          \color{White}\textbf{Año 2} &
+          \color{White}\textbf{Año 3} \\
+        \midrule
+        \multicolumn{4}{@{}l}{\cellcolor{RedRisk!10}
+          \textit{Escenario A: Sin Intervención}} \\
+        Costo rotación  & \$2.1M & \$2.1M & \$2.1M \\
+        \midrule
+        \multicolumn{4}{@{}l}{\cellcolor{GreenOK!10}
+          \textit{Escenario B: Con Intervención}} \\
+        Ahorro Directo   & \$588K & \$756K & \$840K \\
+        Costo Intervenc. & (\$263K)& (\$150K)& (\$100K) \\
+        \rowcolor{GreenOK!20}
+        \textbf{Beneficio Neto}
+          & \textbf{\$325K} & \textbf{\$606K} & \textbf{\$740K} \\
+        \midrule
+        \rowcolor{NavyLight!15}
+        \textbf{Acumulado}
+          & \textbf{\$325K} & \textbf{\$931K} & \textbf{\$1.67M} \\
+        \bottomrule
+      \end{tabular}
+      \vspace{6pt}
+      \[
+        \text{ROI Año 1} = \frac{\$325.500}{\$262.500} \times 100 = \mathbf{123.9\%}
+      \]
+
+    \column{0.40\textwidth}
+      {\small\bfseries\color{NavyDeep}Beneficio Neto Acumulado}
+      \begin{tikzpicture}
+        \begin{axis}[
+          ybar, width=5cm, height=4.5cm,
+          bar width=18pt,
+          xtick={1,2,3},
+          xticklabels={Año 1, Año 2, Año 3},
+          ymin=0, ymax=2000,
+          ytick={0,500,1000,1500,2000},
+          yticklabels={\$0,\$0.5M,\$1M,\$1.5M,\$2M},
+          tick label style={font=\tiny},
+          axis lines=left,
+          ymajorgrids=true, grid style={dotted,gray!30}
+        ]
+          \addplot[fill=GreenOK!80,draw=none]
+            coordinates {(1,325)(2,931)(3,1671)};
+        \end{axis}
+      \end{tikzpicture}\\
+      \hallabox{GreenOK}{\faPiggyBank\ \ USD 1.67M en 3 años}{%
+        Por cada \textbf{USD 1} invertido en
+        retención se obtienen \textbf{USD 2.24}
+        en beneficios netos.}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}{Plan de Intervención: 3 Niveles}
+  \begin{tikzpicture}[overlay,remember picture]
+    \fill[GrayLight,rounded corners=4pt]
+      ([xshift=6pt,yshift=-74pt]current page.north west)
+      rectangle
+      ([xshift=-6pt,yshift=18pt]current page.south east);
+  \end{tikzpicture}
+
+  \begin{columns}[T]
+    \column{0.32\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=RedRisk!8, colframe=RedRisk,
+        arc=5pt, boxrule=1.5pt,
+        title={\faExclamationCircle\ \ Nivel 1 — Urgente},
+        fonttitle=\small\bfseries,
+        attach boxed title to top center={yshift=-2mm},
+        boxed title style={colback=RedRisk,colframe=RedRisk}
+      ]
+        {\scriptsize\bfseries Próximas 2 Semanas}\\[3pt]
+        {\scriptsize
+        \faCircle\ Reuniones 1-a-1 con 79 personas en riesgo muy alto\\[2pt]
+        \faCircle\ Diagnóstico rápido de clima en áreas críticas\\[2pt]
+        \faCircle\ Análisis de brecha salarial vs.\ mercado\\[4pt]
+        \textbf{Inversión: USD \$12.500}
+        }
+      \end{tcolorbox}
+
+    \column{0.32\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=Amber!8, colframe=Amber,
+        arc=5pt, boxrule=1.5pt,
+        title={\faShieldAlt\ \ Nivel 2 — Preventivo},
+        fonttitle=\small\bfseries,
+        attach boxed title to top center={yshift=-2mm},
+        boxed title style={colback=Amber,colframe=Amber}
+      ]
+        {\scriptsize\bfseries Próximo Mes}\\[3pt]
+        {\scriptsize
+        \faCircle\ Mentoría estructurada para 546 personas en riesgo alto\\[2pt]
+        \faCircle\ Plan de capacitación: meta 3+ cursos/año\\[2pt]
+        \faCircle\ Talleres de liderazgo para jefaturas\\[4pt]
+        \textbf{Inversión: USD \$205.000}
+        }
+      \end{tcolorbox}
+
+    \column{0.32\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=GreenOK!8, colframe=GreenOK,
+        arc=5pt, boxrule=1.5pt,
+        title={\faChartBar\ \ Nivel 3 — Transformación},
+        fonttitle=\small\bfseries,
+        attach boxed title to top center={yshift=-2mm},
+        boxed title style={colback=GreenOK,colframe=GreenOK}
+      ]
+        {\scriptsize\bfseries 6 Meses}\\[3pt]
+        {\scriptsize
+        \faCircle\ Dashboard ejecutivo de rotación en tiempo real\\[2pt]
+        \faCircle\ Integración de People Analytics en decisiones de HR\\[2pt]
+        \faCircle\ Revisión de políticas de carrera y compensación\\[4pt]
+        \textbf{Inversión: USD \$45.000}
+        }
+      \end{tcolorbox}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{frame}[shrink=8]{Roadmap de Implementación}
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.4cm,
+    fase/.style={
+      draw=NavyLight, fill=NavyLight!10, rounded corners=4pt,
+      text width=2.65cm, align=center, font=\scriptsize, minimum height=1.1cm,
+      inner sep=2pt
+    },
+    arrow/.style={-{Stealth[length=5pt]}, NavyLight, thick}
+  ]
+    \node[fase,fill=RedRisk!10,draw=RedRisk] (s1) {
+      \textbf{\color{RedRisk}Semana 1--2}\\
+      Validación ejecutiva\\
+      Aprobación presupuesto\\
+      Comunicación liderazgo
+    };
+    \node[fase,fill=Amber!10,draw=Amber,right=0.15cm of s1] (s2) {
+      \textbf{\color{Amber}Semana 2--4}\\
+      Equipos de gestión\\
+      Capacitar jefaturas\\
+      Reuniones 1-a-1
+    };
+    \node[fase,fill=Gold!10,draw=Gold,right=0.15cm of s2] (m2) {
+      \textbf{\color{Gold}Mes 2--3}\\
+      Programa mentoría\\
+      Encuesta de clima\\
+      Plan capacitación
+    };
+    \node[fase,fill=NavyLight!10,draw=NavyLight,right=0.15cm of m2] (m4) {
+      \textbf{\color{NavyLight}Mes 4--6}\\
+      Dashboard BI\\
+      Revisión políticas\\
+      Analytics integrado
+    };
+    \node[fase,fill=GreenOK!10,draw=GreenOK,right=0.15cm of m4] (m6) {
+      \textbf{\color{GreenOK}Mes 6--12}\\
+      Medición de impacto\\
+      Ajuste de modelos\\
+      Reporte C-Suite
+    };
+
+    \draw[arrow] (s1) -- (s2);
+    \draw[arrow] (s2) -- (m2);
+    \draw[arrow] (m2) -- (m4);
+    \draw[arrow] (m4) -- (m6);
+
+    % Línea de tiempo
+    \draw[NavyDeep!30, thick, dashed]
+      ([yshift=-0.5cm]s1.south west) -- ([yshift=-0.5cm]m6.south east);
+    \node[font=\tiny,color=GrayMid] at ([yshift=-0.7cm]s1.south)  {Inicio};
+    \node[font=\tiny,color=GrayMid] at ([yshift=-0.7cm]m6.south)  {12 meses};
+
+  \end{tikzpicture}
+
+  \vspace{2pt}
+  \hallabox{NavyLight}{\faFlag\ \ Hito Clave — Mes 3}{%
+    Primera medición de impacto: revisión de tasa de rotación, NPS interno y evolución del
+    score de riesgo. Ajuste de intervenciones según resultados.}
+\end{frame}
+
+% ============================================================================
+\section[Conclusiones]{Conclusiones}
+% ============================================================================
+
+\begin{frame}[shrink=25]{Hallazgos Principales}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \hallabox{RedRisk}{\faExclamationTriangle\ \ Crisis en Áreas Críticas}{%
+        Rotación 25.2\% vs.\ 3.8\% en no-críticas.
+        Diferencial de \textbf{6.6×}. Riesgo operacional inminente
+        en Tecnología y Atención Cli.}
+      \vspace{1pt}
+      \hallabox{Amber}{\faSearch\ \ Predictores Claros}{%
+        Antigüedad (19.8\%), Clima (15.5\%) y Ausentismo (14.4\%) lideran según RF.
+        La probabilidad promedio de fuga por área (modelo RF)
+        permite focalizar intervenciones de forma eficiente.}
+      \vspace{1pt}
+      \hallabox{NavyLight}{\faRobot\ \ Modelo Confiable}{%
+        AUC 0.677 permite segmentación y priorización
+        con un 32.7\% en zona de alto riesgo.}
+
+    \column{0.48\textwidth}
+      \hallabox{Gold}{\faBullseye\ \ Foco de Alta Eficiencia}{%
+        Solo \textbf{79 personas (2.5\%)} en riesgo Muy Alto
+        presentan tasa de rotación real del 30.4\%.}
+      \vspace{1pt}
+      \hallabox{GreenOK}{\faDollarSign\ \ ROI Comprobado}{%
+        Intervención estratégica genera \textbf{USD 1.67M} en
+        beneficios netos a 3 años. ROI Año 1: 123.9\%.}
+      \vspace{1pt}
+      \hallabox{Cyan}{\faClock\ \ Urgencia de Acción}{%
+        Cada mes de inacción cuesta \textbf{USD 175.750}
+        (USD 2.109.000 / 12). La ventana de acción
+        preventiva es ahora.}
+  \end{columns}
+\end{frame}
+
+% ─────────────────────────────────────────────────────────────────────────────
+{
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+\begin{frame}[plain]
+  \begin{tikzpicture}[overlay,remember picture]
+    \fill[NavyDeep] (current page.south west) rectangle (current page.north east);
+    \fill[NavyMid,opacity=0.4]
+      (current page.north west) --
+      ([xshift=10cm]current page.north west) --
+      (current page.center) -- cycle;
+    \draw[Cyan,line width=1.5pt]
+      ([yshift=-0.35\paperheight]current page.north west) --
+      ([yshift=-0.35\paperheight]current page.north east);
+    \draw[Gold,line width=0.5pt,opacity=0.5]
+      ([yshift=-0.355\paperheight]current page.north west) --
+      ([yshift=-0.355\paperheight,xshift=0.5\paperwidth]current page.north west);
+  \end{tikzpicture}
+
+  \vspace{1.8cm}
+  \centering
+  {\color{GrayMid}\small\bfseries\MakeUppercase{FinanCorp Chile · Gerencia de Personas}}
+  \vspace{0.5cm}
+
+  {\color{White}\fontsize{22}{26}\selectfont\bfseries
+    ¿Preguntas?}
+  \vspace{0.3cm}
+
+  {\color{Cyan}\fontsize{15}{18}\selectfont
+    Gracias por su atención}
+  \vspace{0.8cm}
+
+  \begin{tikzpicture}
+    \draw[Cyan,line width=1pt] (0,0) -- (5,0);
+    \draw[Gold,line width=0.4pt] (0,-3pt) -- (2.5,-3pt);
+  \end{tikzpicture}
+
+\end{frame}
+}
+
+\end{document}

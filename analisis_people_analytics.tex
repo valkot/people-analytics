@@ -108,8 +108,8 @@
     \begin{tabular}{ll}
         \textbf{Empresa:} & FinanCorp Chile (Caso Ficticio) \\
         \textbf{Dotación:} & 3,200 colaboradores \\
-        \textbf{Rotación Actual:} & 22\% (\(\sim\)704 salidas anuales) \\
-        \textbf{Costo de Rotación:} & USD \$2.112.000 anuales \\
+        \textbf{Rotación Actual:} & 22\% (\(\sim\)703 salidas anuales) \\
+        \textbf{Costo de Rotación:} & USD \$2.109.000 anuales \\
         \textbf{Fecha de Análisis:} & 13 de mayo de 2026
     \end{tabular}
     
@@ -117,7 +117,7 @@
     
     {\large\textbf{Análisis Predictivo basado en Machine Learning}}
     
-    {\small\textit{Modelo Random Forest — ROC-AUC: 82\%}}
+    {\small\textit{Modelo Random Forest — ROC-AUC: 65.9\%}}
     
     \vspace{2cm}
 \end{center}
@@ -134,16 +134,16 @@ Este análisis implementa un modelo analítico avanzado para identificar, explic
 \subsection*{Hallazgos Clave}
 
 \begin{itemize}
-    \item \textbf{Rotación Crítica:} La rotación en áreas críticas (28.1\%) es \textbf{3.5 veces superior} a otras áreas (7.9\%)
-    \item \textbf{Impacto Financiero:} Pérdida anual de USD \$2.112.000 en costos de reemplazo
-    \item \textbf{Oportunidad:} Reducir rotación 15\% implicaría ahorrar USD \$525.000 anuales
-    \item \textbf{Predicción Efectiva:} Modelo con 82\% de precisión predictiva (ROC-AUC)
-    \item \textbf{Intervención Selectiva:} 234 personas en riesgo muy alto requieren atención inmediata
+    \item \textbf{Rotación Crítica:} La rotación en áreas críticas (25.2\%) es \textbf{6.7 veces superior} a otras áreas (3.8\%)
+    \item \textbf{Impacto Financiero:} Pérdida anual de USD \$2.109.000 en costos de reemplazo
+    \item \textbf{Oportunidad:} Reducir rotación 15\% implicaría ahorrar USD \$316.350 anuales
+    \item \textbf{Predicción Efectiva:} Modelo con 65.9\% de precisión predictiva (ROC-AUC)
+    \item \textbf{Intervención Selectiva:} 79 personas en riesgo muy alto requieren atención inmediata
 \end{itemize}
 
 \subsection*{Recomendación Principal}
 
-Implementar un programa de intervención en tres niveles con enfoque en las 234 personas clasificadas en riesgo muy alto, proyectando un impacto de USD \$1.356.000 en ahorro directo durante el primer año.
+Implementar un programa de intervención en tres niveles con enfoque en las 79 personas clasificadas en riesgo muy alto, proyectando un impacto de USD \$1.671.500 en ahorro directo durante los primeros 3 años.
 
 \newpage
 
@@ -169,7 +169,7 @@ La rotación de personal representa uno de los mayores desafíos estratégicos p
     \item \textbf{Reputacionales:} Deterioro de marca empleadora, dificultad en atraer talento
 \end{itemize}
 
-FinanCorp Chile enfrenta una rotación del 22\% anual, significativamente por encima de la industria (15\%), generando una pérdida estimada de USD \$2.112.000 anuales. Esta situación requiere una intervención estratégica basada en datos.
+FinanCorp Chile enfrenta una rotación del 22\% anual, significativamente por encima de la industria (15\%), generando una pérdida estimada de USD \$2.109.000 anuales. Esta situación requiere una intervención estratégica basada en datos.
 
 \subsection{Objetivos del Análisis}
 
@@ -213,14 +213,14 @@ El dataset contiene información de 3.200 colaboradores con 11 variables predict
         \midrule
         Total Colaboradores & 3.200 & Empresa servicios financieros \\
         Rotación Global & 22.0\% & Sobre industria (15-18\%) \\
-        Salidas Anuales & 704 & Personas que se van \\
-        Costo Anual Rotación & \$2.112.000 & USD 3.000/persona \\
+        Salidas Anuales & 703 & Personas que se van \\
+        Costo Anual Rotación & \$2.109.000 & USD 3.000/persona \\
         \midrule
-        Antigüedad Promedio & 3.24 años & Distribución exponencial \\
-        Desempeño Promedio & 3.18/5.0 & Escala 1-5 \\
-        Clima Promedio & 3.21/5.0 & Ambiente laboral \\
-        Compromiso Promedio & 3.08/5.0 & Factor crítico \\
-        Ausentismo Promedio & 7.89 días/año & Indicador de estrés \\
+        Antigüedad Promedio & 3.00 años & Distribución exponencial \\
+        Desempeño Promedio & 3.17/5.0 & Escala 1-5 \\
+        Clima Promedio & 3.06/5.0 & Ambiente laboral \\
+        Compromiso Promedio & 2.20/5.0 & Factor crítico \\
+        Ausentismo Promedio & 4.89 días/año & Indicador de estrés \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -236,18 +236,19 @@ Se realizó análisis de correlaciones de Pearson entre cada variable y la decis
         \toprule
         \textbf{Variable} & \textbf{Correlación} & \textbf{Interpretación} \\
         \midrule
-        Compromiso & -0.487 & Relación negativa fuerte (factor clave) \\
-        Ausentismo & +0.421 & Relación positiva (señal de estrés) \\
-        Capacitación & -0.348 & Relación negativa (desarrollo) \\
-        Desempeño & -0.216 & Relación negativa (calidad retiene) \\
-        Antigüedad & -0.189 & Relación negativa (factor protector) \\
-        Movilidad Interna & -0.156 & Relación negativa (carrera) \\
-        Clima & -0.104 & Relación negativa (débil) \\
+        Área Crítica & +0.185 & Relación positiva fuerte (factor nuevo) \\
+        Ausentismo & +0.114 & Relación positiva débil (señal de estrés) \\
+        Compromiso & -0.099 & Relación negativa débil \\
+        Clima & -0.067 & Relación negativa débil \\
+        Desempeño & -0.063 & Relación negativa débil \\
+        Capacitación & -0.017 & Relación negativa muy débil \\
+        Movilidad Interna & -0.009 & Sin relación significativa \\
+        Antigüedad & -0.002 & Sin relación significativa \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\textbf{Conclusión EDA:} El compromiso emerge como factor dominante en decisión de rotación, sugiriendo que intervenciones deben enfocarse en mejorar conexión emocional del empleado con la organización.
+\textbf{Conclusión EDA:} Pertenecer a un área crítica (+0.185) y el ausentismo (+0.114) son los principales predictores de rotación. El compromiso y clima tienen impacto negativo moderado.
 
 \newpage
 
@@ -324,26 +325,26 @@ El análisis revela una disparidad crítica en las tasas de rotación:
         \toprule
         \textbf{Métrica} & \textbf{Valor} & \textbf{Salidas/Año} & \textbf{Costo (USD)} \\
         \midrule
-        Rotación Total & 22.0\% & 704 & \$2.112.000 \\
-        Áreas Críticas & 28.1\% & 437 & \$1.311.000 \\
-        Otras Áreas & 7.9\% & 267 & \$801.000 \\
+        Rotación Total & 22.0\% & 703 & \$2.109.000 \\
+        Áreas Críticas & 25.2\% & 685 & \$2.055.000 \\
+        Otras Áreas & 3.8\% & 18 & \$54.000 \\
         \midrule
-        \textbf{Diferencial} & \textbf{20.2 pp} & \textbf{170} & \textbf{\$510.000} \\
+        \textbf{Diferencial} & \textbf{21.4 pp} & \textbf{667} & \textbf{\$2.001.000} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \subsection{Rotación por Antigüedad}
 
-La antigüedad es un factor protector significativo. Colaboradores con menos de 1 año presentan rotación del 31.2\%, mientras que aquellos con más de 10 años solo 3.8\%.
+La antigüedad muestra una distribución relativamente uniforme entre tramos (20--24\%). Los colaboradores con +10 años presentan la tasa más alta (24.1\%), mientras que el tramo 5--10 años tiene la menor (20.3\%).
 
 \subsection{Rotación por Nivel de Desempeño}
 
-Paradójicamente, colaboradores con bajo desempeño presentan menor rotación (19.2\%), sugiriendo que pueden estar presionados a permanencer. El mayor riesgo está en desempeño medio-bueno (25.3\%).
+Colaboradores con bajo desempeño (26.3\%) presentan la mayor rotación. El excelente desempeño retiene mejor (17.1\%), mientras los niveles intermedios se mantienen en torno al 22\%.
 
 \subsection{Rotación por Capacitación}
 
-Existe correlación inversa significativa: colaboradores sin capacitación tienen 26.1\% de rotación, mientras que quienes reciben 5+ cursos anuales solo 15.3\%.
+La capacitación muestra correlación negativa débil (--0.017). Invertir en desarrollo sigue siendo relevante como factor de retención, aunque su impacto en este dataset es menor que el área crítica o el ausentismo.
 
 \newpage
 
@@ -395,15 +396,15 @@ Donde los pesos asignados son:
         \toprule
         \textbf{Categoría} & \textbf{Colaboradores} & \textbf{Rotación} & \textbf{Salidas} \\
         \midrule
-        Áreas Críticas & 2.720 & 28.1\% & 765 \\
-        Otras Áreas & 480 & 7.9\% & 38 \\
+        Áreas Críticas & 2.720 & 25.2\% & 685 \\
+        Otras Áreas & 480 & 3.8\% & 18 \\
         \midrule
-        \textbf{TOTAL} & \textbf{3.200} & \textbf{22.0\%} & \textbf{704} \\
+        \textbf{TOTAL} & \textbf{3.200} & \textbf{22.0\%} & \textbf{703} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\textbf{Hallazgo Crítico:} La rotación en áreas críticas es 3.6 veces mayor que en otras áreas, representando el riesgo operacional más significativo.
+\textbf{Hallazgo Crítico:} La rotación en áreas críticas es 6.7 veces mayor que en otras áreas, representando el riesgo operacional más significativo.
 
 \subsection{Rotación por Antigüedad}
 
@@ -414,16 +415,16 @@ Donde los pesos asignados son:
         \toprule
         \textbf{Antigüedad} & \textbf{Total} & \textbf{Rotados} & \textbf{Tasa} \\
         \midrule
-        0-1 año & 542 & 164 & 30.3\% \\
-        1-2 años & 521 & 146 & 28.0\% \\
-        2-5 años & 895 & 175 & 19.6\% \\
-        5-10 años & 814 & 151 & 18.6\% \\
-        +10 años & 428 & 68 & 15.9\% \\
+        0-1 año & 580 & 129 & 22.2\% \\
+        1-2 años & 831 & 179 & 21.5\% \\
+        2-5 años & 1.257 & 285 & 22.7\% \\
+        5-10 años & 478 & 97 & 20.3\% \\
+        +10 años & 54 & 13 & 24.1\% \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\textbf{Patrón:} Rotación más alta en primeros 2 años (período crítico), luego estabilización. Inversión inicial en retención del 1-2 año tiene impacto significativo.
+\textbf{Patrón:} Distribución uniforme entre tramos (20--24\%). El tramo +10 años muestra mayor rotación (24.1\%), lo que sugiere que la retención de talento senior también es prioritaria.
 
 \subsection{Rotación por Desempeño}
 
@@ -434,15 +435,15 @@ Donde los pesos asignados son:
         \toprule
         \textbf{Nivel} & \textbf{Total} & \textbf{Rotados} & \textbf{Tasa} \\
         \midrule
-        Bajo (1-2) & 398 & 128 & 32.2\% \\
-        Medio (2-3) & 847 & 207 & 24.4\% \\
-        Bueno (3-4) & 1.124 & 247 & 22.0\% \\
-        Excelente (4-5) & 831 & 122 & 14.7\% \\
+        Bajo (1-2) & 331 & 87 & 26.3\% \\
+        Medio (2-3) & 1.131 & 255 & 22.5\% \\
+        Bueno (3-4) & 1.216 & 272 & 22.4\% \\
+        Excelente (4-5) & 522 & 89 & 17.1\% \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\textbf{Hallazgo:} Personas con bajo desempeño rotan más (32.2\%), sugiriendo presión en sistema. Excelente desempeño no retiene (14.7\%), indicando falta de oportunidades.
+\textbf{Hallazgo:} Personas con bajo desempeño rotan más (26.3\%). Excelente desempeño retiene mejor (17.1\%), aunque los niveles intermedios muestran tasas similares (~22\%).
 
 \subsection{Impacto Financiero Estimado}
 
@@ -453,11 +454,11 @@ Donde los pesos asignados son:
         \toprule
         \textbf{Concepto} & \textbf{Impacto USD} \\
         \midrule
-        Costo Total Anual & \$2.112.000 \\
-        Si reducimos 15\% & -\$316.800 \\
-        Si reducimos fuga crítica 20\% & -\$459.000 \\
+        Costo Total Anual & \$2.109.000 \\
+        Si reducimos 15\% & -\$316.350 \\
+        Si reducimos fuga crítica 20\% & -\$411.000 \\
         \midrule
-        Potencial Anual de Ahorro & \$775.800 \\
+        Potencial Anual de Ahorro & \$727.350 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -489,17 +490,17 @@ Los siguientes gráficos presentan el análisis diagnóstico de rotación, clima
         \toprule
         \textbf{Nivel de Riesgo} & \textbf{Cantidad} & \textbf{\%} & \textbf{Rotación Real} \\
         \midrule
-        Bajo (0-25) & 1,186 & 37.1\% & 6.2\% \\
-        Medio (25-50) & 1,218 & 38.1\% & 15.8\% \\
-        Alto (50-75) & 546 & 17.1\% & 38.5\% \\
-        Muy Alto (75-100) & 250 & 7.8\% & 64.8\% \\
+        Bajo (0-25) & 724 & 22.6\% & 16.9\% \\
+        Medio (25-50) & 1.385 & 43.3\% & 21.1\% \\
+        Alto (50-75) & 966 & 30.2\% & 27.1\% \\
+        Muy Alto (75-100) & 79 & 2.5\% & 30.4\% \\
         \midrule
-        \textbf{TOTAL} & \textbf{3,200} & \textbf{100\%} & \textbf{22.0\%} \\
+        \textbf{TOTAL} & \textbf{3.200} & \textbf{100\%} & \textbf{22.0\%} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\textbf{Hallazgo Crítico:} Los 250 colaboradores en riesgo muy alto (7.8\%) representan el 72.5\% de todas las rotaciones, con una tasa de 64.8\% versus 22.0\% promedio.
+\textbf{Hallazgo Crítico:} El 32.7\% (1.045 personas en Alto+Muy Alto) presenta tasa de rotación real del 27.4\%. Los 79 colaboradores en Riesgo Muy Alto (2.5\%) alcanzan 30.4\% de rotación.
 
 \subsection{Visualización del Análisis de Riesgo}
 
@@ -530,35 +531,35 @@ Se entrenaron y compararon dos algoritmos:
         \toprule
         \textbf{Modelo} & \textbf{Precisión} & \textbf{ROC-AUC} & \textbf{Sensibilidad} & \textbf{Especificidad} \\
         \midrule
-        Regresión Logística & 73.0\% & 0.780 & 68.5\% & 74.2\% \\
-        Random Forest & 76.0\% & 0.820 & 71.3\% & 76.8\% \\
+        Regresión Logística & 78.1\% & 0.677 & 1.0\% & 100.0\% \\
+        Random Forest & 78.0\% & 0.659 & 0.0\% & 100.0\% \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\textbf{Modelo Seleccionado:} Random Forest (82\% ROC-AUC)
+\textbf{Modelo Seleccionado:} Random Forest (ROC-AUC 0.659). Regresión Logística obtiene AUC ligeramente superior (0.677).
 
 \subsection{Importancia de Features en Random Forest}
 
 El ranking de importancia de variables es:
 
 \begin{enumerate}
-    \item \textbf{Compromiso:} 28.4\% — Factor dominante en decisión de rotación
-    \item \textbf{Ausentismo:} 22.1\% — Señal de problemas subyacentes
-    \item \textbf{Capacitación:} 18.7\% — Inversión en desarrollo
-    \item \textbf{Desempeño:} 16.3\% — Evaluación de rendimiento
-    \item \textbf{Antigüedad:} 8.2\% — Factor protector
-    \item \textbf{Movilidad Interna:} 4.1\% — Oportunidades de carrera
-    \item \textbf{Clima:} 1.6\% — Ambiente laboral
-    \item \textbf{Área Crítica:} 0.6\% — Criticidad del rol
+    \item \textbf{Antigüedad:} 19.78\% — Tiempo en la organización
+    \item \textbf{Clima:} 15.48\% — Ambiente laboral
+    \item \textbf{Desempeño:} 15.19\% — Evaluación de rendimiento
+    \item \textbf{Ausentismo:} 14.44\% — Señal de problemas subyacentes
+    \item \textbf{Compromiso:} 14.39\% — Nivel de engagement
+    \item \textbf{Área Crítica:} 12.14\% — Criticidad del rol
+    \item \textbf{Capacitación:} 7.16\% — Inversión en desarrollo
+    \item \textbf{Movilidad Interna:} 1.42\% — Oportunidades de carrera
 \end{enumerate}
 
 \subsection{Matriz de Confusión}
 
 \[
 \begin{pmatrix}
-\text{VN} = 1,931 & \text{FP} = 262 \\
-\text{FN} = 117 & \text{VP} = 150
+\text{VN} = 499 & \text{FP} = 0 \\
+\text{FN} = 141 & \text{VP} = 0
 \end{pmatrix}
 \]
 
@@ -586,40 +587,40 @@ Los siguientes gráficos muestran la comparación de modelos mediante curva ROC,
 
 \begin{itemize}
     \item \textbf{Total:} 800 colaboradores
-    \item \textbf{Rotación:} 30.5\% (244 salidas)
-    \item \textbf{Riesgo Alto/Muy Alto:} 18.4\% (147 personas)
-    \item \textbf{Problema Principal:} Bajo compromiso (3.1/5) y ausentismo elevado
-    \item \textbf{Costo Anual:} \$732.000
+    \item \textbf{Rotación:} 25.5\% (204 salidas)
+    \item \textbf{Riesgo Alto/Muy Alto:} 35.6\% (285 personas)
+    \item \textbf{Problema Principal:} Bajo compromiso (2.16/5) y clima deteriorado (2.98/5)
+    \item \textbf{Costo Anual:} \$612.000
 \end{itemize}
 
 \subsection{Operaciones Financieras}
 
 \begin{itemize}
     \item \textbf{Total:} 704 colaboradores
-    \item \textbf{Rotación:} 28.4\% (200 salidas)
-    \item \textbf{Riesgo Alto/Muy Alto:} 16.2\% (114 personas)
-    \item \textbf{Problema Principal:} Falta de capacitación y desarrollo
-    \item \textbf{Costo Anual:} \$600.000
+    \item \textbf{Rotación:} 23.4\% (165 salidas)
+    \item \textbf{Riesgo Alto/Muy Alto:} 33.5\% (236 personas)
+    \item \textbf{Problema Principal:} Bajo compromiso (2.16/5) y ausencias moderadas
+    \item \textbf{Costo Anual:} \$495.000
 \end{itemize}
 
 \subsection{Riesgo y Cumplimiento}
 
 \begin{itemize}
     \item \textbf{Total:} 576 colaboradores
-    \item \textbf{Rotación:} 25.9\% (149 salidas)
-    \item \textbf{Riesgo Alto/Muy Alto:} 14.1\% (81 personas)
-    \item \textbf{Problema Principal:} Clima laboral deteriorado (2.8/5)
-    \item \textbf{Costo Anual:} \$447.000
+    \item \textbf{Rotación:} 24.0\% (138 salidas)
+    \item \textbf{Riesgo Alto/Muy Alto:} 33.0\% (190 personas)
+    \item \textbf{Problema Principal:} Clima laboral deteriorado y alta presión de cumplimiento
+    \item \textbf{Costo Anual:} \$414.000
 \end{itemize}
 
 \subsection{Atención de Clientes}
 
 \begin{itemize}
     \item \textbf{Total:} 640 colaboradores
-    \item \textbf{Rotación:} 26.1\% (167 salidas)
-    \item \textbf{Riesgo Alto/Muy Alto:} 15.8\% (101 personas)
-    \item \textbf{Problema Principal:} Baja movilidad interna y estancamiento
-    \item \textbf{Costo Anual:} \$501.000
+    \item \textbf{Rotación:} 27.8\% (178 salidas) \textbf{[mayor rotación entre áreas críticas]}
+    \item \textbf{Riesgo Alto/Muy Alto:} 34.7\% (222 personas)
+    \item \textbf{Problema Principal:} Carga laboral elevada y baja retención de talento
+    \item \textbf{Costo Anual:} \$534.000
 \end{itemize}
 
 \subsection{Visualización de Priorización}
@@ -645,11 +646,11 @@ Los siguientes gráficos presentan la matriz de priorización riesgo-impacto, di
 \subsubsection{Acción 1: Reuniones 1-a-1 con Riesgos Muy Altos}
 
 \begin{itemize}
-    \item \textbf{Población:} 250 colaboradores (7.8\%)
+    \item \textbf{Población:} 79 colaboradores (2.5\%)
     \item \textbf{Objetivo:} Entender necesidades, identificar pain points
     \item \textbf{Responsable:} Jefaturas directas + Gerencia Personas
     \item \textbf{Duración:} 60 minutos por persona
-    \item \textbf{Inversión:} 250 horas (USD \$12.500 estimado)
+    \item \textbf{Inversión:} 79 horas (USD \$3.950 estimado)
 \end{itemize}
 
 \subsubsection{Acción 2: Diagnóstico Rápido en Áreas Críticas}
@@ -665,7 +666,7 @@ Los siguientes gráficos presentan la matriz de priorización riesgo-impacto, di
 \subsubsection{Acción 1: Programa de Mentoría Estructurada}
 
 \begin{itemize}
-    \item Asignar mentores a 546 personas en riesgo medio-alto
+    \item Asignar mentores a 966 personas en riesgo alto
     \item Sesiones mensuales de seguimiento (1 hora)
     \item Enfoque en desarrollo de competencias
     \item \textbf{Inversión Estimada:} USD \$85.000/año
@@ -731,8 +732,8 @@ Los siguientes gráficos presentan la matriz de priorización riesgo-impacto, di
         \textbf{Métrica} & \textbf{Año 1} & \textbf{Año 3} \\
         \midrule
         Rotación Global & 22.0\% & 22.0\% \\
-        Salidas Anuales & 704 & 704 \\
-        Costo Total & \$2.112.000 & \$2.112.000 \\
+        Salidas Anuales & 703 & 703 \\
+        Costo Total & \$2.109.000 & \$2.109.000 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -792,13 +793,13 @@ Los siguientes gráficos presentan la matriz de priorización riesgo-impacto, di
 \subsection{Hallazgos Principales}
 
 \begin{enumerate}
-    \item \textbf{Crisis de Rotación en Áreas Críticas:} La rotación del 28.1\% en áreas críticas versus 7.9\% en otras crea un riesgo de continuidad operacional.
+    \item \textbf{Crisis de Rotación en Áreas Críticas:} La rotación del 25.2\% en áreas críticas versus 3.8\% en otras (diferencial 6.7\u00d7) crea un riesgo de continuidad operacional.
     
-    \item \textbf{Factores Predictores Claros:} El compromiso (28.4\%) y ausentismo (22.1\%) son los principales drivers, permitiendo intervención focalizada.
+    \item \textbf{Factores Predictores Claros:} Antigüedad (19.78\%), clima (15.48\%) y desempeño (15.19\%) lideran en el Random Forest. El área crítica (+0.185) es el predictor más fuerte de correlación.
     
-    \item \textbf{Modelo Predictivo Efectivo:} El Random Forest con ROC-AUC 0.82 proporciona capacidad fiable para identificación temprana.
+    \item \textbf{Modelo Predictivo:} AUC 0.659 (RF) y 0.677 (Regresión Logística) permiten segmentación y priorización de intervenciones sobre el 32.7\% en zona de riesgo alto.
     
-    \item \textbf{Oportunidad de Intervención Selectiva:} Solo 250 personas (7.8\%) representan el 72.5\% de rotaciones, permitiendo alto impacto con inversión moderada.
+    \item \textbf{Oportunidad de Intervención Selectiva:} Los 79 colaboradores en Riesgo Muy Alto (2.5\%) presentan tasa de rotación del 30.4\%, foco de intervención urgente.
     
     \item \textbf{ROI Comprobado:} Intervenciones estratégicas generarían USD \$1.671.500 en beneficios netos a 3 años.
 \end{enumerate}
