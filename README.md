@@ -228,7 +228,7 @@ cd /ruta/al/People-Analytics
 # Informe técnico (23 páginas)
 pdflatex -interaction=nonstopmode analisis_people_analytics.tex
 
-# Presentación ejecutiva (19 láminas)
+# Presentación ejecutiva (19 láminas, Beamer)
 pdflatex -interaction=nonstopmode presentacion_people_analytics.tex
 ```
 
@@ -319,13 +319,61 @@ graph TD
 
 ---
 
-## 📚 Documentos Generados
+## 📚 Entregables del Proyecto
 
-### `analisis_people_analytics.pdf` — Informe Técnico (23 páginas)
-Secciones: Portada · EDA · Indicadores · Segmentación · Modelos ML · Áreas Críticas · Recomendaciones · Impacto Financiero · Conclusiones · Plan de Implementación
+### 📄 `analisis_people_analytics.pdf` — Informe Técnico (23 páginas)
 
-### `presentacion_people_analytics.pdf` — Presentación Ejecutiva (19 láminas)
-Beamer 16:9, tema Madrid. Incluye gráficos PGFPlots embebidos, tablas de datos y plan de intervención de 3 niveles.
+| # | Sección | Contenido |
+|---|---|---|
+| 1 | Portada | Ficha técnica, integrantes, contexto FinanCorp |
+| 2 | Resumen Ejecutivo | Hallazgos clave y recomendación principal |
+| 3 | Introducción | Contexto del problema y objetivos |
+| 4 | EDA | Estadísticas descriptivas, correlaciones, distribuciones |
+| 5 | Indicadores Clave | Rotación global, por área y por tramo de antigüedad |
+| 6 | Segmentación | Score de riesgo 0–100, distribución en 4 niveles |
+| 7 | Modelos ML | Comparación RL vs RF, umbral óptimo, matriz confusión |
+| 8 | Áreas Críticas | Análisis profundo Tecnología, Operaciones, Atención, Riesgo |
+| 9 | Recomendaciones | Plan de intervención 3 niveles con inversión estimada |
+| 10 | Impacto Financiero | Proyección 3 escenarios, ROI año 1 |
+| 11 | Conclusiones | Hallazgos principales y factores de éxito |
+| 12 | Plan Implementación | Cronograma 6 meses por fases |
+
+---
+
+### 📊 `presentacion_people_analytics.pdf` — Presentación Ejecutiva (19 láminas)
+
+Formato **Beamer 16:9**, tema Madrid. Diseñada para exposición ante directivos con gráficos PGFPlots embebidos, tablas de colores y cajas de hallazgos.
+
+| Lámina | Título | Tipo |
+|--------|--------|------|
+| 1 | Portada | Identidad visual + datos clave |
+| 2 | Agenda | Estructura de la presentación |
+| 3 | El Desafío de FinanCorp Chile | Contexto y magnitud del problema |
+| 4 | Objetivos y Metodología | Flujo analítico |
+| 5 | Dataset: Estadísticas Descriptivas | Tabla EDA completa |
+| 6 | Correlaciones con Rotación | Tabla de correlaciones por variable |
+| 7 | Panorama Global de Rotación | Indicadores globales y financieros |
+| 8 | Rotación por Antigüedad y Desempeño | Tablas segmentadas |
+| 9 | Desglose por Área Funcional | Rotación y costo por área |
+| 10 | Modelo de Score de Riesgo (0–100) | Fórmula + distribución en 4 niveles |
+| 11 | Riesgo por Área: Mapa de Calor | Tabla + gráfico de barras PGFPlots |
+| 12 | Comparación de Modelos ML | Tabla RL vs RF + matriz de confusión |
+| 13 | Curva ROC y Capacidad Predictiva | Gráfico ROC + interpretación AUC |
+| 14 | Matriz de Priorización: Riesgo × Impacto | Cuadrante estratégico |
+| 15 | Proyección Financiera: 3 Escenarios | Tabla comparativa con ahorro estimado |
+| 16 | Plan de Intervención: 3 Niveles | Urgente / Preventivo / Transformación |
+| 17 | Roadmap de Implementación | Gantt de 6 meses con hitos |
+| 18 | Hallazgos Principales | Resumen ejecutivo visual |
+| 19 | Cierre | Llamada a la acción + contacto |
+
+**Para compilar:**
+```bash
+# Informe técnico
+pdflatex -interaction=nonstopmode analisis_people_analytics.tex
+
+# Presentación ejecutiva
+pdflatex -interaction=nonstopmode presentacion_people_analytics.tex
+```
 
 ---
 
