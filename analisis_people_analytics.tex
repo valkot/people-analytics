@@ -110,14 +110,20 @@
         \textbf{Dotación:} & 3,200 colaboradores \\
         \textbf{Rotación Actual:} & 22\% (\(\sim\)703 salidas anuales) \\
         \textbf{Costo de Rotación:} & USD \$2.109.000 anuales \\
-        \textbf{Fecha de Análisis:} & 13 de mayo de 2026
+        \textbf{Fecha de Análisis:} & 13 de mayo de 2026 \\[6pt]
+        \multicolumn{2}{l}{\textcolor{darkblue}{\rule{10cm}{0.4pt}}} \\[4pt]
+        \textbf{Integrantes:} & Daniel Avello \\
+                              & Felipe Valdivia \\
+                              & Roberto Sepúlveda \\
+                              & Christofer Palominos \\
+                              & José Luis Gajardo Angel \\
     \end{tabular}
     
     \vfill
     
     {\large\textbf{Análisis Predictivo basado en Machine Learning}}
     
-    {\small\textit{Modelo Random Forest — ROC-AUC: 65.9\%}}
+    {\small\textit{Modelo: Regresión Logística (umbral óptimo 0.54) — ROC-AUC: 70.5\%}}
     
     \vspace{2cm}
 \end{center}
@@ -531,13 +537,13 @@ Se entrenaron y compararon dos algoritmos:
         \toprule
         \textbf{Modelo} & \textbf{Precisión} & \textbf{ROC-AUC} & \textbf{Sensibilidad} & \textbf{Especificidad} \\
         \midrule
-        Regresión Logística & 78.1\% & 0.677 & 1.0\% & 100.0\% \\
-        Random Forest & 78.0\% & 0.659 & 0.0\% & 100.0\% \\
+        Regresión Logística (umbral=0.54) & 63.7\% & 0.705 & 69.8\% & 63.1\% \\
+        Random Forest & 78.0\% & 0.659 & 0.0\% & 100.0\% \\ % sin ajuste de umbral
         \bottomrule
     \end{tabular}
 \end{table}
 
-\textbf{Modelo Seleccionado:} Random Forest (ROC-AUC 0.659). Regresión Logística obtiene AUC ligeramente superior (0.677).
+\textbf{Modelo Seleccionado:} Regresión Logística con \texttt{class\_weight='balanced'} y umbral óptimo 0.54 (AUC 0.705, Recall Rotación \textbf{69.8\%}). El ajuste de umbral resuelve el desbalance de clases (\textasciitilde10\% rotación en train), permitiendo detectar 44 de 63 rotaciones reales frente a 0/63 del modelo sin ajuste.
 
 \subsection{Importancia de Features en Random Forest}
 
@@ -558,8 +564,8 @@ El ranking de importancia de variables es:
 
 \[
 \begin{pmatrix}
-\text{VN} = 499 & \text{FP} = 0 \\
-\text{FN} = 141 & \text{VP} = 0
+\text{VN} = 364 & \text{FP} = 213 \\
+\text{FN} = 19 & \text{VP} = 44
 \end{pmatrix}
 \]
 
@@ -797,7 +803,7 @@ Los siguientes gráficos presentan la matriz de priorización riesgo-impacto, di
     
     \item \textbf{Factores Predictores Claros:} Antigüedad (19.78\%), clima (15.48\%) y desempeño (15.19\%) lideran en el Random Forest. El área crítica (+0.185) es el predictor más fuerte de correlación.
     
-    \item \textbf{Modelo Predictivo:} AUC 0.659 (RF) y 0.677 (Regresión Logística) permiten segmentación y priorización de intervenciones sobre el 32.7\% en zona de riesgo alto.
+    \item \textbf{Modelo Predictivo:} Regresión Logística con umbral optimizado (AUC 0.705, Recall 69.8\%) detecta 44 de 63 rotaciones reales. El ajuste de umbral frente al desbalance de clases es clave para utilidad operacional.
     
     \item \textbf{Oportunidad de Intervención Selectiva:} Los 79 colaboradores en Riesgo Muy Alto (2.5\%) presentan tasa de rotación del 30.4\%, foco de intervención urgente.
     
