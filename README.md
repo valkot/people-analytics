@@ -5,6 +5,8 @@
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=flat-square)
 
+**Equipo:** Daniel Avello · Felipe Valdivia · Roberto Sepúlveda · Christofer Palominos · José Luis Gajardo Angel
+
 ---
 
 ## 🎯 Visión General
@@ -23,8 +25,8 @@ Este proyecto implementa un **modelo analítico avanzado** para identificar, exp
 | **Costo de Rotación** | USD $2.109M | USD $3.000 × persona |
 | **Rotación en Áreas Críticas** | 25.2% | **6.7×** superior a otras áreas (3.8%) |
 | **Potencial de Ahorro (Año 1)** | USD $1.671M | Con intervenciones efectivas |
-| **Capacidad Predictiva (RF)** | AUC 0.659 | Random Forest classifier |
-| **Capacidad Predictiva (RL)** | AUC 0.677 | Regresión Logística |
+| **Modelo Final** | RL + umbral 0.54 | AUC **0.705**, Recall Rotación **69.8%** |
+| **Detección de Rotaciones** | 44 / 63 reales | VP=44, FN=19 (sin ajuste: VP=0) |
 
 ---
 
@@ -69,15 +71,16 @@ Este proyecto implementa un **modelo analítico avanzado** para identificar, exp
 
 ### 6️⃣ **Modelos Predictivos de Machine Learning**
 ```
-├── Regresión Logística
-│   ├── Precisión: 78.1%
-│   └── ROC-AUC: 0.677
+├── Random Forest  (referencia)
+│   ├── Precisión: 78.0%  |  ROC-AUC: 0.659
+│   └── Confusion: VN=499 / FP=0 / FN=141 / VP=0  ← sin detección
 │
-└── Random Forest
-    ├── Precisión: 78.0%
-    ├── ROC-AUC: 0.659
-    ├── VN=499 / FP=0 / FN=141 / VP=0
-    └── Features principales (importancia):
+└── Regresión Logística  ⭐ MODELO FINAL
+    ├── class_weight='balanced'  +  umbral óptimo 0.54
+    ├── Precisión: 63.7%  |  ROC-AUC: 0.705
+    ├── Recall Rotación: 69.8%  (44/63 rotaciones detectadas)
+    ├── Confusion: VN=364 / FP=213 / FN=19 / VP=44
+    └── Features (importancia RF, referencia):
         ├── Antigüedad:      19.78%
         ├── Clima:           15.48%
         ├── Desempeño:       15.19%
@@ -87,6 +90,7 @@ Este proyecto implementa un **modelo analítico avanzado** para identificar, exp
         ├── Capacitación:     7.16%
         └── Movilidad:        1.42%
 ```
+> **Técnica aplicada:** desbalance de clases (~10% rotación en train) resuelto con `class_weight='balanced'` + búsqueda de umbral óptimo que maximiza F1 de la clase minoritaria.
 **Visualización en** `modelos_predictivos.png`
 
 ### 7️⃣ **Matriz de Priorización**
@@ -267,9 +271,9 @@ People-Analytics/
 - Métricas de clima, antigüedad y desempeño
 
 ### 3. **Data Science / BI**
-- Baseline de modelo predictivo (AUC 0.659–0.677)
+- Modelo predictivo con AUC 0.705 y Recall 69.8% (RL + umbral optimizado)
 - Validación de hipótesis con datos sintéticos realistas
-- Mejora continua del modelo
+- Técnica de balanceo de clases + threshold tuning reproducible
 
 ### 4. **C-Suite**
 - Impacto financiero de la rotación (USD $2.109M/año)
@@ -338,7 +342,9 @@ Beamer 16:9, tema Madrid. Incluye gráficos PGFPlots embebidos, tablas de datos 
 
 <div align="center">
 
-**Última actualización:** Mayo 2026 · **Versión:** 2.0
+**Última actualización:** Mayo 2026 · **Versión:** 2.1
+
+**Equipo:** Daniel Avello · Felipe Valdivia · Roberto Sepúlveda · Christofer Palominos · José Luis Gajardo Angel
 
 **[⬆ Volver al inicio](#-people-analytics-financorp-chile)**
 
